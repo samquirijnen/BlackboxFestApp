@@ -24,21 +24,25 @@ namespace BlackboxFest.Areas.Identity.Pages.Account
         private readonly UserManager<CustomUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+      //  private readonly Adress _adress;
 
         public RegisterModel(
             UserManager<CustomUser> userManager,
             SignInManager<CustomUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender
+            )
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+         //   _adress = adress;
         }
 
         [BindProperty]
         public InputModel Input { get; set; }
+      
 
         public string ReturnUrl { get; set; }
 
@@ -67,6 +71,11 @@ namespace BlackboxFest.Areas.Identity.Pages.Account
             [Display(Name = "Lastname")]
             [Required(ErrorMessage = "Add a lastname")]
             public string LastName { get; set; }
+            //[Required(ErrorMessage = "Add a Country")]
+            //public Country Country { get; set; }
+            //[Required(ErrorMessage = "Add a Adress")]
+            //public Adress Adress { get; set; }
+
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -81,9 +90,9 @@ namespace BlackboxFest.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new CustomUser { UserName = Input.Email, Email = Input.Email ,FirstName = Input.FirstName, LastName= Input.LastName };
+                var user = new CustomUser { UserName = Input.Email, Email = Input.Email ,FirstName = Input.FirstName, LastName= Input.LastName};
                 var result = await _userManager.CreateAsync(user, Input.Password);
-                if (result.Succeeded)
+               // var adress = new Adress { StreetName = Input.StreetName };
                 {
                     _logger.LogInformation("User created a new account with password.");
 
