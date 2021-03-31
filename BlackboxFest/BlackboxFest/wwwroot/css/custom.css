@@ -1,0 +1,21 @@
+﻿body {
+    font-family: 'Herculanum';
+    background-image: url('../images/festivalBackground.jpeg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+
+.navbar {
+    opacity: 0.5;
+}
+
+.colorButton {
+    background-color: #B3A813;
+    opacity: 0.8;
+}
+
+h1 {
+    font-size: 100px;
+}
