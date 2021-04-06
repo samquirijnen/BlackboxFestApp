@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using BlackboxFest.Data;
 using BlackboxFest.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -24,20 +25,24 @@ namespace BlackboxFest.Areas.Identity.Pages.Account
         private readonly UserManager<CustomUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-      //  private readonly Adress _adress;
+        private readonly ApplicationDbContext _context;
+
+
 
         public RegisterModel(
             UserManager<CustomUser> userManager,
             SignInManager<CustomUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender
+            IEmailSender emailSender,
+            ApplicationDbContext context
+           
             )
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
-         //   _adress = adress;
+            _context = context;
         }
 
         [BindProperty]
@@ -47,6 +52,8 @@ namespace BlackboxFest.Areas.Identity.Pages.Account
         public string ReturnUrl { get; set; }
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
+        public string PersonId { get; private set; }
+     //   public Adress Adress { get; set; }
 
         public class InputModel
         {
@@ -54,6 +61,10 @@ namespace BlackboxFest.Areas.Identity.Pages.Account
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
+
+            [Required]
+            [Display(Name = "Username")]
+            public string UserName { get; set; }
 
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
@@ -65,16 +76,21 @@ namespace BlackboxFest.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
             [Display(Name = "Firstname")]
             [Required(ErrorMessage = "Add a firstname")]
             public string FirstName { get; set; }
+
             [Display(Name = "Lastname")]
             [Required(ErrorMessage = "Add a lastname")]
             public string LastName { get; set; }
+
             //[Required(ErrorMessage = "Add a Country")]
             //public Country Country { get; set; }
+
             //[Required(ErrorMessage = "Add a Adress")]
             //public Adress Adress { get; set; }
+           
 
         }
 
@@ -82,6 +98,8 @@ namespace BlackboxFest.Areas.Identity.Pages.Account
         {
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+          
+
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
@@ -90,9 +108,10 @@ namespace BlackboxFest.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new CustomUser { UserName = Input.Email, Email = Input.Email ,FirstName = Input.FirstName, LastName= Input.LastName};
+                var user = new CustomUser { UserName = Input.UserName, Email = Input.Email ,FirstName = Input.FirstName, LastName= Input.LastName };
+             //   var adress = new Adress { StreetName = Input.Adress.StreetName };
                 var result = await _userManager.CreateAsync(user, Input.Password);
-               // var adress = new Adress { StreetName = Input.StreetName };
+              
                 {
                     _logger.LogInformation("User created a new account with password.");
 
@@ -101,7 +120,7 @@ namespace BlackboxFest.Areas.Identity.Pages.Account
                     var callbackUrl = Url.Page(
                         "/Account/ConfirmEmail",
                         pageHandler: null,
-                        values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
+                        values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl},
                         protocol: Request.Scheme);
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
