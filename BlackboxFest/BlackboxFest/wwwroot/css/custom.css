@@ -53,9 +53,13 @@ h1 {
     left: 50%;
     /* bring your own prefixes */
 }
+.colorTextRememberMe{
+    color:black;
+}
 
 @media only screen and (max-width: 600px) {
     .mainBlock {
         width: 100%;
     }
+   
 }
