@@ -1,0 +1,69 @@
+﻿@model BlackboxFest.ViewModels.ArtistViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutArtistUserView.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/userPagina.css"/>
+
+</head>
+<body class="backgroundArtist">
+    <div class="mainBlock p-5 ">
+        <h4 class="d-flex justify-content-center ColorGold">Preforming artists</h4>
+        <div class="table d-flex justify-content-center  ">
+
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn active ColorGold">
+                    <input type="radio" name="options" id="option1" checked> All
+                </label>
+                <label class="btn ColorGold">
+                    <input type="radio" name="options" id="option2"> day1
+                </label>
+                <label class="btn ColorGold">
+                    <input type="radio" name="options" id="option3"> day2
+                </label>
+                <label class="btn ColorGold">
+                    <input type="radio" name="options" id="option3"> day3
+                </label>
+            </div>
+
+        </div>
+        <div class="text-center">
+            <form asp-controller="Artists" asp-action="Search" method="get">
+                <div class="form-actions">
+                    <p>
+                       
+                        <input asp-for="EventSearch" placeholder="Search Artist"/>
+                        <input type="submit" value="Search" class="  backgroundColorGold btn btn-primary" />
+                        <a class="ColorGold" asp-controller="Artists" asp-action="ArtistViewUser">Back to list</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            @foreach (var item in Model.Artists)
+            {
+                <div class="card bg-dark text-white ml-5 mb-5" style="width: 18rem;">
+
+                    <a asp-action="Details" asp-route-id="@item.Id"> <img class="card-img-top" src="@Html.DisplayFor(modelitem=> item.ImageName)" /></a>
+
+                    <div class="d-flex justify-content-around" style="background-color:black">
+                        <h4 class="card-title ColorGold">@Html.DisplayFor(modelitem => item.Name)</h4>
+                    </div>
+                </div>
+
+
+
+            }
+        </div>
+    </div>
+</body>
+</html>

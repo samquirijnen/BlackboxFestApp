@@ -1,0 +1,74 @@
+﻿@model IEnumerable<BlackboxFest.Models.News>
+
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title  class=" witKleurTekst d-flex justify-content-center">NEWS</title>
+</head>
+<body>
+  
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="table col-10 d-flex justify-content-center">
+            <table class="table table-dark ">
+                <colgroup>
+                    <col style="width:25%">
+                    <col style="width:25%">
+                    <col style="width:25%">
+                    <col style="width:25%">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ShortDescription)
+                        </th>
+
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Date)
+                        </th>
+                        <th>
+                            <a asp-action="Create"> <img src="~/Images/addButton.png" asp-append-version="true" style="width:2em; height:2em;" /></a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ShortDescription)
+                            </td>
+
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date)
+                            </td>
+
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id"><img src="~/Images/EditlButton.png" asp-append-version="true" style="width:2em; height:2em;" /></a> |
+                                <a asp-action="Details" asp-route-id="@item.Id"> <img src="~/Images/DetailButton.png" asp-append-version="true" style="width:2em; height:2em;" /> </a> |
+
+                                <a asp-action="Delete" asp-route-id="@item.Id"> <img src="~/Images/Icon material-delete.png" asp-append-version="true" style="width:2em; height:2em;" /></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        </div>
+</body>
+</html>

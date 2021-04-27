@@ -20,6 +20,7 @@ namespace BlackboxFest.Controllers
 
         public IActionResult Index()
         {
+          //  ViewBag.ImagePath = "../images/festivalBackground.jpeg";
             return View();
         }
 

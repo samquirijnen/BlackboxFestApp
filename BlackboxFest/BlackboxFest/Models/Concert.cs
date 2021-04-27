@@ -14,6 +14,7 @@ namespace BlackboxFest.Models
         [DisplayName("Begin Time")]
         [Required]
         public DateTime BeginTime { get; set; }
+        
         [Required]
         public DateTime EndTime { get; set; }
     }

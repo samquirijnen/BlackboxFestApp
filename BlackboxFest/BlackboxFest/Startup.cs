@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BlackboxFest.Models;
 
+
 namespace BlackboxFest
 {
     public class Startup
@@ -31,14 +32,16 @@ namespace BlackboxFest
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddIdentity<CustomUser,IdentityRole>(options=> { options.Password.RequireDigit = true;
-                options.Password.RequireUppercase = true
+            services.AddIdentity<CustomUser,IdentityRole>(options=> { options.Password.RequireDigit = false;
+                options.Password.RequireUppercase = false
               ;
             }).AddRoles<IdentityRole>()
                    .AddEntityFrameworkStores<ApplicationDbContext>()
                    .AddDefaultTokenProviders().AddDefaultUI();
+          //  services.AddAuthorization(options => options.AddPolicy("Admin", policy => policy.RequireClaim("Manager")));
             services.AddControllersWithViews();
             services.AddRazorPages().AddRazorRuntimeCompilation();
+          
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,7 +73,7 @@ namespace BlackboxFest
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
-            CreateUserRoles(serviceProvider).Wait();
+          // CreateUserRoles(serviceProvider).Wait();
         }
 
         private async Task CreateUserRoles(IServiceProvider serviceProvider)
@@ -89,7 +92,7 @@ namespace BlackboxFest
             if (user != null)
             {
                 DbSet<IdentityUserRole<string>> roles = Context.UserRoles;
-                IdentityRole adminRole = Context.Roles.FirstOrDefault(r => r.Name == "squirijnen@gmail.com");
+                IdentityRole adminRole = Context.Roles.FirstOrDefault(r => r.Name == "Admin");
                 if (adminRole != null)
                 {
                     if (!roles.Any(ur=>ur.UserId == user.Id && ur.RoleId == adminRole.Id))

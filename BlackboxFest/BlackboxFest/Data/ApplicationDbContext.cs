@@ -15,7 +15,8 @@ namespace BlackboxFest.Data
         }
         public DbSet<Adress> Adresses { get; set; }
         public DbSet<Artist> Artists { get; set; }
-        public DbSet<BookingAgent> BookingAgents { get; set; }
+      
+
         public DbSet<City> Cities { get; set; }
         public DbSet<Concert> Concerts { get; set; }
         public DbSet<Country> Countries { get; set; }
@@ -28,5 +29,6 @@ namespace BlackboxFest.Data
         public DbSet<CustomUser> GetUsers { get; set; }
         public DbSet<UserConcert> UserConcerts { get; set; }
         public DbSet<UserNews> UserNews { get; set; }
+       
     }
 }
