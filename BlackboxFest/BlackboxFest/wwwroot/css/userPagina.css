@@ -1,0 +1,98 @@
+﻿body {
+    font-family: "Herculanum";
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    box-sizing: border-box;
+}
+.backgroundLayout {
+    background-image: url('../images/festivalBackground.jpeg');
+}
+.backgroundArtist {
+    background-image: url('../images/background3.png');
+}
+.backgroundNews {
+    background-image: url('../images/background4.png');
+}
+
+.navbar {
+    opacity: 0.5;
+}
+.ColorGold{
+    color: #B3A813;
+}
+.backgroundColorGold {
+    background-color: #B3A813;
+    border-color:none;
+}
+
+.colorButton {
+    background-color: #B3A813;
+    opacity: 0.98;
+}
+
+h1 {
+    font-size: 100px;
+}
+.block {
+    background-color: white;
+    opacity: 1.0;
+    width: 100%;
+    border-radius: 10px;
+    position: center;
+   
+    
+    /* bring your own prefixes */
+  
+}
+
+@media only screen and (max-width: 600px) {
+    .block {
+        width:100%;
+     
+      
+    }
+    h1{
+        font-size:50px;
+    }
+    
+}
+.mainBlock {
+    background-color: #201E03;
+   margin-top:7em;
+    opacity: 0.85;
+    width: 100%;
+    border-radius: 10px;
+    position: center;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+}
+.colorTextRememberMe{
+    color:black;
+}
+.colorTextLongDescription{
+    color:white;
+}
+
+@media only screen and (max-width: 600px) {
+    .mainBlock {
+        width: 100%;
+    }
+   
+}
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
+
+
+
+
+
+
+
+

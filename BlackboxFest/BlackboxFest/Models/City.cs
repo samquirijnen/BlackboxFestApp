@@ -7,8 +7,10 @@ namespace BlackboxFest.Models
     public class City
     {
         public int Id { get; set; }
+        [Column(TypeName = "nvarchar(50)")]
         [Required]
         public string Name { get; set; }
+        [Column(TypeName = "nvarchar(20)")]
         [Required]
         public string PostalCode { get; set; }
         [Required]

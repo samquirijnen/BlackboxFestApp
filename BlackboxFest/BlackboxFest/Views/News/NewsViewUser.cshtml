@@ -1,0 +1,40 @@
+﻿@model BlackboxFest.ViewModels.NewsViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutNewsUserView.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/userPagina.css" />
+
+</head>
+<body class="backgroundArtist">
+    <div class="mainBlock p-5">
+        <h4 class="d-flex justify-content-center ColorGold">NEWS</h4>
+      
+        <div class="row">
+            @foreach (var item in Model.NewsItems)
+            {
+
+                <div class="card ml-5  mb-5" style="width: 18rem;">
+
+                    <a asp-action="Details" asp-route-id="@item.Id"> <img class="card-img-top" src="@Html.DisplayFor(modelitem=> item.ImageName)" /></a>
+                    <div class="card-body">
+                        <p class="card-text text-center">@Html.DisplayFor(modelitem => item.Date)</p>
+                        <p class="card-text font-weight-bold">@Html.DisplayFor(modelitem => item.Title)</p>
+                        <p class="card-text">@Html.DisplayFor(modelitem => item.ShortDescription)</p>
+                    </div>
+
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>

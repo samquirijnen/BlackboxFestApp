@@ -1,9 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>aspnet-BlackboxFest-5C6BE4F7-FA35-4E80-9619-C1F9BE4E68E7</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Repositorys\**" />
+    <Content Remove="Repositorys\**" />
+    <EmbeddedResource Remove="Repositorys\**" />
+    <None Remove="Repositorys\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
@@ -21,7 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\Image\" />
   </ItemGroup>
 </Project>

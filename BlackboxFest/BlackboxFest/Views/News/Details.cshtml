@@ -1,0 +1,48 @@
+﻿@model BlackboxFest.ViewModels.NewsViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutNewsUserView.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div class="mainBlock p-5">
+        <h4 class="d-flex justify-content-center ColorGold"> @Html.DisplayFor(model => model.News.Date)</h4>
+        <h4 class="d-flex justify-content-center ColorGold"> @Html.DisplayFor(model => model.News.Title)</h4>
+       
+        <div class="d-flex justify-content-center" enctype="multipart/form-data">
+
+            <hr />
+
+            <dl>
+                <dt class="col-sm-2">
+                    <!---Show the image-->
+
+                    <img src="@(Model.News.ImageName)"  asp-append-version="true" alt="Image Artist" style="width:auto; height:auto" />
+
+                </dt>
+                <dd class="col-sm-10 colorTextLongDescription">
+                    @Html.DisplayFor(model => model.News.LongDescription)
+                </dd>
+
+
+
+
+
+
+            </dl>
+        </div>
+        <div class="d-flex justify-content-center">
+
+
+            <a asp-action="NewsViewUser" class="colorTextLongDescription">Back to List</a>
+        </div>
+
+</body>
+</html>

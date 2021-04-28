@@ -15,6 +15,6 @@ namespace BlackboxFest.Models
         [Required]
         public int ArtistId { get; set; }
         [ForeignKey("ArtistId")]
-        public virtual IEnumerable<Artist>  Artists { get; set; }
+        public virtual Artist  Artists { get; set; }
     }
 }

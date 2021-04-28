@@ -7,8 +7,10 @@ namespace BlackboxFest.Models
     public class Adress
     {
         public int Id { get; set; }
+        [Column(TypeName = "nvarchar(100)")]
         [Required]
         public string StreetName { get; set; }
+        [Column(TypeName = "nvarchar(20)")]
         [Required]
         public string StreetNumber { get; set; }
         [Required]

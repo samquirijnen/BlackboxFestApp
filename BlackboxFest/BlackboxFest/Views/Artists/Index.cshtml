@@ -1,0 +1,71 @@
+﻿@model BlackboxFest.ViewModels.ArtistViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/AdminPagina.css" />
+
+</head>
+<body class="backgroundArtist">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="table col-10 d-flex justify-content-center">
+
+            <table class="table table-dark ">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Artist.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Artist.ArtistShortDescription)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Artist.MusicGenre)
+                        </th>
+
+                        <th>
+                            <a asp-action="Create"> <img src="~/Images/addButton.png" asp-append-version="true" style="width:2em; height:2em;" /></a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Artists)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ArtistShortDescription)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MusicGenre)
+                            </td>
+
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id"><img src="~/Images/EditlButton.png" asp-append-version="true" style="width:2em; height:2em;" /></a> |
+                                <a asp-action="Details" asp-route-id="@item.Id"> <img src="~/Images/DetailButton.png" asp-append-version="true" style="width:2em; height:2em;" /> </a> |
+
+                                <a asp-action="Delete" asp-route-id="@item.Id"> <img src="~/Images/Icon material-delete.png" asp-append-version="true" style="width:2em; height:2em;" /></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</body>
+</html>
