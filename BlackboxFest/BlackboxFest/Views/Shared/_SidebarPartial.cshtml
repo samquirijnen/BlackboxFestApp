@@ -4,12 +4,10 @@
         <div class="p-4 pt-5">
             <a href="#" class="img logo rounded-circle mb-5" style="background-image: url(images/logo.jpg);"></a>
             <ul class="list-unstyled components mb-5">
-                <li>
-                    <partial name="_LoginPartial" />
-                </li>
+
                 <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" class="dropdown-toggle">Artists</a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <a href="#ArtistSubmenu" data-toggle="collapse" class="dropdown-toggle">Artists</a>
+                    <ul class="collapse list-unstyled" id="ArtistSubmenu">
                         <li>
                             <a class="nav-link text-dark" asp-area="" asp-controller="Artists" asp-action="Index">Artists</a>
                         </li>
@@ -19,12 +17,10 @@
 
                     </ul>
                 </li>
+
                 <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" class="dropdown-toggle">Timetable</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <a href="#timetableSubmenu" data-toggle="collapse" class="dropdown-toggle">Timetable</a>
+                    <ul class="collapse list-unstyled" id="timetableSubmenu">
                         <li>
                             <a href="#">Page 1</a>
                         </li>
@@ -37,8 +33,8 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#homeSubmenu" data-toggle="collapse" class="dropdown-toggle">News</a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <a href="#NewsSubmenu" data-toggle="collapse" class="dropdown-toggle">News</a>
+                    <ul class="collapse list-unstyled" id="NewsSubmenu">
                         <li>
                             <a class="nav-link text-dark" asp-area="" asp-controller="News" asp-action="Index">All news items</a>
                         </li>
@@ -49,9 +45,23 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#">Gallery</a>
-                </li>
+                    <a href="#GallerySubmenu" data-toggle="collapse" class="dropdown-toggle">Gallery</a>
+                    <ul class="collapse list-unstyled" id="GallerySubmenu">
+                        <li>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Gallery" asp-action="Index">Overview photo's</a>
+                        </li>
+                        <li>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="News" asp-action="Create">Add photo to gallery</a>
+                        </li>
 
+                    </ul>
+
+
+                </li> 
+                <break/>
+                <li>
+                    <partial name="_LoginPartial" />
+                </li>
             </ul>
 
 

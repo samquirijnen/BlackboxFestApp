@@ -20,9 +20,23 @@ namespace BlackboxFest.Controllers
 
         public IActionResult Index()
         {
-          //  ViewBag.ImagePath = "../images/festivalBackground.jpeg";
+            if (User.IsInRole("Admin"))
+            {
+                return View();
+            }
+            //  ViewBag.ImagePath = "../images/festivalBackground.jpeg";
+            return View("IndexUser");
+        }
+        public IActionResult IndexUser()
+        {
+            //if (User.IsInRole("Admin"))
+            //{
+            //    return RedirectToAction();
+            //}
+            //  ViewBag.ImagePath = "../images/festivalBackground.jpeg";
             return View();
         }
+
 
         public IActionResult Privacy()
         {

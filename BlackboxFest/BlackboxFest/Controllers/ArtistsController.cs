@@ -11,9 +11,11 @@ using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using Microsoft.AspNetCore.Http;
 using BlackboxFest.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BlackboxFest.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ArtistsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -32,12 +34,14 @@ namespace BlackboxFest.Controllers
             viewModel.Artists = await _context.Artists.ToListAsync();
             return View(viewModel);
         }
+        [AllowAnonymous]
         public async Task<IActionResult> ArtistViewUser()
         {
             ArtistViewModel viewModel = new ArtistViewModel();
             viewModel.Artists = await _context.Artists.ToListAsync();
             return View(viewModel);
         }
+        [AllowAnonymous]
         // GET: Artists/Details/5
         public async Task<IActionResult> Details(int? id)
         {

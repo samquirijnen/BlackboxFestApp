@@ -1,7 +1,7 @@
 ﻿@model BlackboxFest.ViewModels.ArtistViewModel
 
 @{
-    Layout = "~/Views/Shared/_LayoutArtistUserView.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -12,10 +12,17 @@
     <title>Index</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/userPagina.css"/>
-
+    <link rel="stylesheet" href="~/css/userPagina.css" />
+    @section Head
+{
+        <style>
+            body {
+                background-image: url("../images/background3.png");
+            }
+        </style>
+    }
 </head>
-<body class="backgroundArtist">
+<body>
     <div class="mainBlock p-5 ">
         <h4 class="d-flex justify-content-center ColorGold">Preforming artists</h4>
         <div class="table d-flex justify-content-center  ">

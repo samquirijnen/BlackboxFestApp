@@ -1,7 +1,7 @@
 ﻿@model BlackboxFest.Models.Artist
 
 @{
-    Layout = "~/Views/Shared/_LayoutArtistUserView.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -13,7 +13,14 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/userPagina.css" />
-
+    @section Head
+{
+        <style>
+            body {
+                background-image: url("../images/background3.png");
+            }
+        </style>
+    }
 </head>
 <body >
     <div class="mainBlock p-5">
@@ -36,7 +43,7 @@
             </dl>-->
                 <div class="row">
                     <div class="col-sm-12 col-md-2 col-md-2">
-                        <img src="@(Model.ImageName)" asp-append-version="true" alt="Image Artist" style="width:15em; height:12em;" />
+                        <img src="@(Model.ImageName)" asp-append-version="true" alt="Image Artist" style="width:100%; height:auto" />
                     </div>
                     <div class="col-sm-12 col-md-1 col-lg-1">
 

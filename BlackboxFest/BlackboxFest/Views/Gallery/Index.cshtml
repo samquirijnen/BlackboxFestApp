@@ -1,0 +1,40 @@
+﻿@model BlackboxFest.ViewModels.GalleryViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <h3 class="d-flex justify-content-center">OVERVIEW PHOTOS GALLERY</h3>
+    <h5 class="d-flex justify-content-center">(Click on a photo to delete)</h5>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="table col-10 d-flex justify-content-center">
+          
+                            @foreach (var item2 in Model.Galleries)
+                            {
+                                <div class=" ml-5 mb-5" style="width: 18rem;">
+
+                                    <a asp-action="Delete" asp-route-id="@item2.Id"> <img class="card-img-top" src="@Html.DisplayFor(modelitem=> item2.ImageName)" /></a>
+
+
+                                </div>
+
+
+
+                            }
+                     
+        </div>
+        </div>
+</body>
+</html>

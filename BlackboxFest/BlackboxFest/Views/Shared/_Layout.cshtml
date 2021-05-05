@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/userPagina.css" />
+    @RenderSection("Head", required: false)
 </head>
-<body class="backgroundLayout">
+<body >
     <header>
         @await Component.InvokeAsync("Menu")
     </header>
