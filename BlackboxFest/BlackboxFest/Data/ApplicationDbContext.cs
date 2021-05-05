@@ -29,6 +29,7 @@ namespace BlackboxFest.Data
         public DbSet<CustomUser> GetUsers { get; set; }
         public DbSet<UserConcert> UserConcerts { get; set; }
         public DbSet<UserNews> UserNews { get; set; }
-       
+        public DbSet<Gallery> Galleries { get; set; }
+
     }
 }

@@ -13,6 +13,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20210428070332_AddGallery2.cs" />
+    <Compile Remove="Migrations\20210428070332_AddGallery2.Designer.cs" />
+    <Compile Remove="Migrations\20210428070634_AddGallery2.cs" />
+    <Compile Remove="Migrations\20210428070634_AddGallery2.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
   </ItemGroup>
 

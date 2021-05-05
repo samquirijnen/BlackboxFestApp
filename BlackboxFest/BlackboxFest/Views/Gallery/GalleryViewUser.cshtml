@@ -1,0 +1,41 @@
+﻿@model BlackboxFest.ViewModels.GalleryViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/userPagina.css" />
+    @section Head
+{
+        <style>
+        body { background-image: url("../images/background6.png"); }
+        </style>
+    }
+</head>
+<body >
+    <div class="mainBlock p-5">
+        <h4 class="d-flex justify-content-center ColorGold">GALLERY</h4>
+
+        <div class="row">
+            @foreach (var item in Model.Galleries)
+            {
+
+                <div class="card ml-5  mb-5" style="width: 18rem;">
+
+                   <img class="card-img-top" src="@Html.DisplayFor(modelitem=> item.ImageName)" />
+                  
+
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>
