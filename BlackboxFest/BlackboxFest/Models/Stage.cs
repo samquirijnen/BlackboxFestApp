@@ -11,8 +11,8 @@ namespace BlackboxFest.Models
         [Column(TypeName = "nvarchar(50)")]
         [Required]
         public string Name { get; set; }
-        [Required]
-        public int ConcertId { get; set; }
+     
+       
         public virtual IEnumerable<Concert> Concert { get; set; }
 
     }

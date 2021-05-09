@@ -9,6 +9,7 @@ namespace BlackboxFest.ViewModels
     public class ArtistViewModel
     {
         public string EventSearch { get; set; }
+        public string Options { get; set; }
         public Artist Artist { get; set; }
         public IEnumerable<Artist> Artists { get; set; }
     }

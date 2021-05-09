@@ -1,0 +1,31 @@
+﻿@model BlackboxFest.ViewModels.ConcertViewModel
+
+    <div class="row d-flex justify-content-center mb-4">
+
+
+        <div>
+            <form asp-controller="Concert" asp-action="Day1TimeTable" method="get">
+                <div class="form-actions">
+                    <input type="submit" value="Day1" class=" ColorGold btn  " />
+
+                </div>
+            </form>
+        </div>
+        <div>
+            <form asp-controller="Concert" asp-action="Day2TimeTable" method="get">
+                <div class="form-actions">
+                    <input type="submit" value="Day2" class="  ColorGold btn " />
+
+                </div>
+            </form>
+        </div>
+        <div>
+            <form asp-controller="Concert" asp-action="Day3TimeTable" method="get">
+                <div class="form-actions">
+                    <input type="submit" value="Day3" class="  ColorGold btn " />
+
+                </div>
+            </form>
+        </div>
+
+    </div>

@@ -11,18 +11,19 @@ using BlackboxFest.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using Microsoft.AspNetCore.Authorization;
+using BlackboxFest.Data.UnitOfWork;
 
 namespace BlackboxFest.Controllers
 {
     [Authorize(Roles = "Admin")]
     public class GalleryController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _uow;
         private readonly IWebHostEnvironment _hostEnvironment;
 
-        public GalleryController(ApplicationDbContext context, IWebHostEnvironment hostEnvironment)
+        public GalleryController(IUnitOfWork uow, IWebHostEnvironment hostEnvironment)
         {
-            _context = context;
+            _uow = uow;
             _hostEnvironment = hostEnvironment;
         }
 
@@ -30,14 +31,14 @@ namespace BlackboxFest.Controllers
         public async Task<IActionResult> Index()
         {
             GalleryViewModel viewModel = new GalleryViewModel();
-            viewModel.Galleries = await _context.Galleries.ToListAsync();
+            viewModel.Galleries = await _uow.GalleryRepository.GetAll().ToListAsync();
             return View(viewModel);
         }
         [AllowAnonymous]
         public async Task<IActionResult> GalleryViewUser()
         {
             GalleryViewModel viewModel = new GalleryViewModel();
-            viewModel.Galleries = await _context.Galleries.ToListAsync();
+            viewModel.Galleries = await _uow.GalleryRepository.GetAll().ToListAsync();
             return View(viewModel);
         }
         // GET: Gallery/Details/5
@@ -48,7 +49,7 @@ namespace BlackboxFest.Controllers
                 return NotFound();
             }
 
-            var gallery = await _context.Galleries
+            var gallery = await _uow.GalleryRepository.GetAll()
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (gallery == null)
             {
@@ -90,8 +91,9 @@ namespace BlackboxFest.Controllers
 
 
                 //Insert record
-                _context.Add(viewModel.Gallery);
-                await _context.SaveChangesAsync();
+                _uow.GalleryRepository.Create(viewModel.Gallery);
+
+                await _uow.Save();
                 return RedirectToAction(nameof(Index)); ;
             }
             return View(viewModel);
@@ -105,7 +107,7 @@ namespace BlackboxFest.Controllers
                 return NotFound();
             }
 
-            var gallery = await _context.Galleries.FindAsync(id);
+            var gallery = await _uow.GalleryRepository.GetById(id);
             if (gallery == null)
             {
                 return NotFound();
@@ -129,8 +131,9 @@ namespace BlackboxFest.Controllers
             {
                 try
                 {
-                    _context.Update(gallery);
-                    await _context.SaveChangesAsync();
+                    _uow.GalleryRepository.Update(gallery);
+
+                    await _uow.Save();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -156,7 +159,7 @@ namespace BlackboxFest.Controllers
                 return NotFound();
             }
 
-            var gallery = await _context.Galleries
+            var gallery = await _uow.GalleryRepository.GetAll()
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (gallery == null)
             {
@@ -171,15 +174,15 @@ namespace BlackboxFest.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var gallery = await _context.Galleries.FindAsync(id);
-            _context.Galleries.Remove(gallery);
-            await _context.SaveChangesAsync();
+            var gallery = await _uow.GalleryRepository.GetById(id);
+            _uow.GalleryRepository.Delete(gallery);
+            await _uow.Save();
             return RedirectToAction(nameof(Index));
         }
 
         private bool GalleryExists(int id)
         {
-            return _context.Galleries.Any(e => e.Id == id);
+            return _uow.GalleryRepository.GetAll().Any(e => e.Id == id);
         }
     }
 }

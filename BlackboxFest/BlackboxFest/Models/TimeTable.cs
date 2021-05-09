@@ -11,10 +11,10 @@ namespace BlackboxFest.Models
         [Required]
         public int ConcertId { get; set; }
         [ForeignKey("ConcertId")]
-        public virtual IEnumerable<Concert> Concerts { get; set; }
+        public virtual Concert Concert { get; set; }
         [Required]
         public int ArtistId { get; set; }
         [ForeignKey("ArtistId")]
-        public virtual Artist  Artists { get; set; }
+        public virtual Artist  Artist { get; set; }
     }
 }

@@ -13,7 +13,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BlackboxFest.Models;
-
+using BlackboxFest.Data.Repositories;
+using BlackboxFest.Data.UnitOfWork;
+using AspNetCoreHero.ToastNotification;
+using AspNetCoreHero.ToastNotification.Extensions;
 
 namespace BlackboxFest
 {
@@ -40,8 +43,18 @@ namespace BlackboxFest
                    .AddDefaultTokenProviders().AddDefaultUI();
           //  services.AddAuthorization(options => options.AddPolicy("Admin", policy => policy.RequireClaim("Manager")));
             services.AddControllersWithViews();
+            services.AddNotyf(config => { config.DurationInSeconds = 15;config.IsDismissable = true;config.Position = NotyfPosition.TopRight;  }) ;
             services.AddRazorPages().AddRazorRuntimeCompilation();
-          
+            services.AddScoped<IGenericRepository<Artist>, GenericRepository<Artist>>();
+            services.AddScoped<IGenericRepository<News>, GenericRepository<News>>();
+            services.AddScoped<IGenericRepository<Gallery>, GenericRepository<Gallery>>();
+            services.AddScoped<IGenericRepository<Concert>, GenericRepository<Concert>>();
+            services.AddScoped<IGenericRepository<Stage>, GenericRepository<Stage>>();
+            services.AddScoped<IGenericRepository<TypeTicket>, GenericRepository<TypeTicket>>();
+            services.AddScoped<IGenericRepository<Ticket>, GenericRepository<Ticket>>();
+            services.AddScoped<IGenericRepository<TimeSlot>, GenericRepository<TimeSlot>>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,7 +78,7 @@ namespace BlackboxFest
 
             app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseNotyf();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

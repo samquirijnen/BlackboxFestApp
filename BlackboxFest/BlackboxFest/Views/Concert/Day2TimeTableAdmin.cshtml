@@ -1,0 +1,19 @@
+﻿@model BlackboxFest.ViewModels.ConcertViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Day 2</title>
+</head>
+<body>
+    <h2 class=" d-flex justify-content-center mb-5">TIMETABLE DAY2 SATERDAY</h2>
+    @await Html.PartialAsync("_TimeTableAdminPartial");
+</body>
+</html>
+

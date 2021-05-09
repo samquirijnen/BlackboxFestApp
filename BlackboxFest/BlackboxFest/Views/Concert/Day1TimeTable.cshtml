@@ -1,0 +1,36 @@
+﻿@model BlackboxFest.ViewModels.ConcertViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/userPagina.css" />
+  
+        @section Head
+{
+            <style>
+                body {
+                    background-image: url("../images/background5.png");
+                }
+            </style>
+        }
+    
+
+</head>
+<body>
+    <div class="mainBlock p-5 ">
+        <h2 class=" ColorGold  d-flex justify-content-center">TIMETABLE FRIDAY</h2>
+        @await Html.PartialAsync("_TimeTableUserPartial");
+    </div>
+
+</body>
+</html>

@@ -11,31 +11,34 @@ using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using BlackboxFest.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using BlackboxFest.Data.UnitOfWork;
 
 namespace BlackboxFest.Controllers
 {
     [Authorize(Roles = "Admin")]
     public class NewsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+     
+        private readonly IUnitOfWork _uow;
         private readonly IWebHostEnvironment _hostEnvironment;
 
-        public NewsController(ApplicationDbContext context , IWebHostEnvironment hostEnvironment)
+        public NewsController(IUnitOfWork uow, IWebHostEnvironment hostEnvironment)
         {
-            _context = context;
+            _uow = uow;
             _hostEnvironment = hostEnvironment;
         }
 
         // GET: News
         public async Task<IActionResult> Index()
         {
-            return View(await _context.News.ToListAsync());
+          
+            return View(await _uow.NewsRepository.GetAll().ToListAsync());
         }
         [AllowAnonymous]
         public async Task<IActionResult> NewsViewUser()
         {
             NewsViewModel viewModel = new NewsViewModel();
-            viewModel.NewsItems = await _context.News.ToListAsync();
+            viewModel.NewsItems = await _uow.NewsRepository.GetAll().ToListAsync();
             return View(viewModel);
         }
         [AllowAnonymous]
@@ -48,7 +51,7 @@ namespace BlackboxFest.Controllers
                 return NotFound();
             }
 
-            viewModel.News = await _context.News.FirstOrDefaultAsync(m => m.Id == id);
+            viewModel.News = await _uow.NewsRepository.GetAll().FirstOrDefaultAsync(m => m.Id == id);
             if (viewModel == null)
             {
                 return NotFound();
@@ -89,8 +92,9 @@ namespace BlackboxFest.Controllers
 
 
                 //Insert record
-                _context.Add(viewModel.News);
-                await _context.SaveChangesAsync();
+              
+                _uow.NewsRepository.Create(viewModel.News);
+                await _uow.Save();
                 return RedirectToAction(nameof(Index)); ;
             }
             return View(viewModel);
@@ -104,7 +108,7 @@ namespace BlackboxFest.Controllers
                 return NotFound();
             }
 
-            var news = await _context.News.FindAsync(id);
+            var news = await _uow.NewsRepository.GetById(id);
             if (news == null)
             {
                 return NotFound();
@@ -128,8 +132,10 @@ namespace BlackboxFest.Controllers
             {
                 try
                 {
-                    _context.Update(news);
-                    await _context.SaveChangesAsync();
+                 
+                    _uow.NewsRepository.Update(news);
+                    await _uow.Save();
+                  
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -155,7 +161,7 @@ namespace BlackboxFest.Controllers
                 return NotFound();
             }
 
-            var news = await _context.News
+            var news = await _uow.NewsRepository.GetAll()
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (news == null)
             {
@@ -170,16 +176,17 @@ namespace BlackboxFest.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var news = await _context.News.FindAsync(id);
-            _context.News.Remove(news);
-            await _context.SaveChangesAsync();
+            var news = await _uow.NewsRepository.GetById(id);
+            _uow.NewsRepository.Delete(news);
+         
+            await _uow.Save();
 
             return RedirectToAction(nameof(Index));
         }
 
         private bool NewsExists(int id)
         {
-            return _context.News.Any(e => e.Id == id);
+            return _uow.NewsRepository.GetAll().Any(e => e.Id == id);
         }
     }
 }

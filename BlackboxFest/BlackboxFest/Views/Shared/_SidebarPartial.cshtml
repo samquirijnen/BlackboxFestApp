@@ -4,7 +4,9 @@
         <div class="p-4 pt-5">
             <a href="#" class="img logo rounded-circle mb-5" style="background-image: url(images/logo.jpg);"></a>
             <ul class="list-unstyled components mb-5">
-
+                <li>
+                    <partial name="_LoginPartial" />
+                </li>
                 <li class="active">
                     <a href="#ArtistSubmenu" data-toggle="collapse" class="dropdown-toggle">Artists</a>
                     <ul class="collapse list-unstyled" id="ArtistSubmenu">
@@ -22,14 +24,15 @@
                     <a href="#timetableSubmenu" data-toggle="collapse" class="dropdown-toggle">Timetable</a>
                     <ul class="collapse list-unstyled" id="timetableSubmenu">
                         <li>
-                            <a href="#">Page 1</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Concert" asp-action="Day1TimeTableAdmin">Day 1</a>
                         </li>
                         <li>
-                            <a href="#">Page 2</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Concert" asp-action="Day2TimeTableAdmin">Day 2</a>
                         </li>
                         <li>
-                            <a href="#">Page 3</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Concert" asp-action="Day3TimeTableAdmin">Day 3</a>
                         </li>
+                      
                     </ul>
                 </li>
                 <li>
@@ -51,17 +54,15 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Gallery" asp-action="Index">Overview photo's</a>
                         </li>
                         <li>
-                            <a class="nav-link text-dark" asp-area="" asp-controller="News" asp-action="Create">Add photo to gallery</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Gallery" asp-action="Create">Add photo to gallery</a>
                         </li>
 
                     </ul>
 
 
-                </li> 
-                <break/>
-                <li>
-                    <partial name="_LoginPartial" />
                 </li>
+                <break />
+
             </ul>
 
 

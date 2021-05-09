@@ -33,8 +33,11 @@ namespace BlackboxFest.Models
         [NotMapped]
         [DisplayName("Upload File")]
         public IFormFile ImageFile { get; set; }
+        //public int? ConcertID { get; set; }
+        //[ForeignKey("ConcertID")]
+        //public Concert Concert { get; set; }
 
-        public IEnumerable<TimeTable> Timetables { get; set; }
+        //public IEnumerable<TimeTable> Timetables { get; set; }
       
     }
 }

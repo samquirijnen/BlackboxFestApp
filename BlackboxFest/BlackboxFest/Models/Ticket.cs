@@ -7,7 +7,7 @@ namespace BlackboxFest.Models
     {
         public int Id { get; set; }
         public DateTime BookingsDate { get; set; }
-        public double Price { get; set; }
+      
         public int TypeTicketId { get; set; }
         [ForeignKey("TypeTicketId")]
         public virtual TypeTicket Type { get; set; }
