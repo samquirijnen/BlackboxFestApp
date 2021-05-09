@@ -12,7 +12,7 @@ namespace BlackboxFest.Models
         [Column(TypeName = "nvarchar(150)")]
         [Required]
         public string Title { get; set; }
-        [Column(TypeName = "nvarchar(150)")]
+        [Column(TypeName = "nvarchar(500)")]
         [DisplayName("Short Description")]
         public string ShortDescription { get; set; }
         [DisplayName("Long Description")]

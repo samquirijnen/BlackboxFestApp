@@ -1,0 +1,90 @@
+﻿@model BlackboxFest.ViewModels.ConcertViewModel
+
+
+<div>
+
+    <div class="row d-flex justify-content-center">
+        <h3>MAINSTAGE</h3>
+        @foreach (var item in Model.Concerts)
+        {
+
+            @if (item.StageID == 1)
+            {
+                @await Html.PartialAsync("_TimeTableSlotPartial", item);
+            }
+
+
+        }
+    </div>
+    <div class="row d-flex justify-content-center">
+        <h3>THE CRAVE</h3>
+        @foreach (var item in Model.Concerts)
+        {
+
+            @if (item.StageID == 2)
+            {
+                @await Html.PartialAsync("_TimeTableSlotPartial", item);
+            }
+
+        }
+    </div>
+    <div class="row d-flex justify-content-center">
+        <h3>TECHNOVILLE</h3>
+        @foreach (var item in Model.Concerts)
+        {
+
+            @if (item.StageID == 3)
+            {
+                @await Html.PartialAsync("_TimeTableSlotPartial", item);
+            }
+
+        }
+    </div>
+    <div class="row d-flex justify-content-center">
+
+        <h3>THE DOME</h3>
+        @foreach (var item in Model.Concerts)
+        {
+            @if (item.StageID == 4)
+            {
+                @await Html.PartialAsync("_TimeTableSlotPartial", item);
+            }
+
+        }
+    </div>
+</div>
+<div class="row d-flex justify-content-center">
+    <div>
+
+    </div>
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Concert.Date" class="control-label"></label>
+                <input asp-for="Concert.Date" class="form-control" />
+                <span asp-validation-for="Concert.Date" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Concert.StageID" class="control-label"></label>
+                <select asp-for="Concert.StageID" class="form-control" asp-items="Model.Stages"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Concert.ArtistID" class="control-label"></label>
+                <select asp-for="Concert.ArtistID" class="form-control" asp-items="Model.ArtistList"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Concert.TimeSlotID" class="control-label"></label>
+                <select asp-for="Concert.TimeSlotID" class="form-control" asp-items="Model.TimeSlots"></select>
+                <span asp-validation-for="Concert.TimeSlotID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

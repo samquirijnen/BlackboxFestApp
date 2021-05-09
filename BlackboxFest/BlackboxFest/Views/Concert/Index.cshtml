@@ -1,0 +1,143 @@
+﻿@model BlackboxFest.ViewModels.ConcertViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p class="d-flex justify-content-center">
+        <a asp-action="Create">Create New</a>
+    </p>
+    <div>
+
+        <div class="row d-flex justify-content-center">
+            <h3>MAINSTAGE</h3>
+            @foreach (var item in Model.Concerts)
+            {
+                if (item.Date == DateTime.Parse("24/09/2021"))
+                {
+
+                    @if (item.StageID == 1)
+                    {
+                        @await Html.PartialAsync("_TimeTableSlotPartial", item);
+                    }
+
+
+                }
+
+            }
+        </div>
+        <div class="row d-flex justify-content-center">
+            <h3>THE CRAVE</h3>
+            @foreach (var item in Model.Concerts)
+            {
+                if (item.Date == DateTime.Parse("24/09/2021"))
+                {
+
+                    @if (item.StageID == 2)
+                    {
+                        @await Html.PartialAsync("_TimeTableSlotPartial", item);
+                    }
+
+
+                }
+
+            }
+        </div>
+        <div class="row d-flex justify-content-center">
+            <h3>TECHNOVILLE</h3>
+            @foreach (var item in Model.Concerts)
+            {
+                if (item.Date == DateTime.Parse("24/09/2021"))
+                {
+
+                    @if (item.StageID == 3)
+                    {
+                        @await Html.PartialAsync("_TimeTableSlotPartial", item);
+                    }
+
+
+                }
+
+            }
+        </div>
+        <div class="row d-flex justify-content-center">
+
+            <h3>THE DOME</h3>
+            @foreach (var item in Model.Concerts)
+            {
+                if (item.Date == DateTime.Parse("24/09/2021"))
+                {
+
+                    @if (item.StageID == 4)
+                    {
+                        @await Html.PartialAsync("_TimeTableSlotPartial", item);
+                    }
+
+
+                }
+
+            }
+        </div>
+    </div>
+    <div class="row">
+    <div class="table col-10 d-flex justify-content-center">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Concert.Artist)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Concert.Date)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Concert.Stage)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Concert.TimeSlot)
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Concerts)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Artist.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Stage.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TimeSlot.Hour)
+                    </td>
+
+
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        </div>
+        </div>
+</body>
+</html>

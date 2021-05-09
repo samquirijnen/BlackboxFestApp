@@ -113,26 +113,25 @@ namespace BlackboxFest.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("BeginTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("ConcertId")
+                    b.Property<int?>("ArtistID")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("EndTime")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("StageID")
+                        .HasColumnType("int");
 
-                    b.Property<int?>("StageId")
+                    b.Property<int?>("TimeSlotID")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ConcertId");
+                    b.HasIndex("ArtistID");
 
-                    b.HasIndex("StageId");
+                    b.HasIndex("StageID");
+
+                    b.HasIndex("TimeSlotID");
 
                     b.ToTable("Concerts");
                 });
@@ -188,7 +187,7 @@ namespace BlackboxFest.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ShortDescription")
-                        .HasColumnType("nvarchar(150)");
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -208,9 +207,6 @@ namespace BlackboxFest.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ConcertId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)");
@@ -218,6 +214,28 @@ namespace BlackboxFest.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Stages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Mainstage"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "The Crave"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Technoville"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "The Dome"
+                        });
                 });
 
             modelBuilder.Entity("BlackboxFest.Models.Ticket", b =>
@@ -230,9 +248,6 @@ namespace BlackboxFest.Migrations
                     b.Property<DateTime>("BookingsDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
                     b.Property<int>("TypeTicketId")
                         .HasColumnType("int");
 
@@ -241,6 +256,79 @@ namespace BlackboxFest.Migrations
                     b.HasIndex("TypeTicketId");
 
                     b.ToTable("Tickets");
+                });
+
+            modelBuilder.Entity("BlackboxFest.Models.TimeSlot", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Hour")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TimeSlot");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Hour = "12.00-13.30"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Hour = "12.30-14.00"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Hour = "14.00-15.30"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Hour = "14.30-16.00"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Hour = "16.00-17.30"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Hour = "16.30-18.00"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Hour = "18.00-19.30"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Hour = "18.30-20.00"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Hour = "20.00-21.30"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Hour = "20.30-22.00"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Hour = "22.00-23.30"
+                        });
                 });
 
             modelBuilder.Entity("BlackboxFest.Models.TimeTable", b =>
@@ -260,6 +348,8 @@ namespace BlackboxFest.Migrations
 
                     b.HasIndex("ArtistId");
 
+                    b.HasIndex("ConcertId");
+
                     b.ToTable("TimeTables");
                 });
 
@@ -274,9 +364,32 @@ namespace BlackboxFest.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
                     b.HasKey("Id");
 
                     b.ToTable("TypeTickets");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Weekend",
+                            Price = 180.0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Day",
+                            Price = 80.0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Camping",
+                            Price = 15.0
+                        });
                 });
 
             modelBuilder.Entity("BlackboxFest.Models.UserConcert", b =>
@@ -565,13 +678,19 @@ namespace BlackboxFest.Migrations
 
             modelBuilder.Entity("BlackboxFest.Models.Concert", b =>
                 {
-                    b.HasOne("BlackboxFest.Models.TimeTable", null)
-                        .WithMany("Concerts")
-                        .HasForeignKey("ConcertId");
+                    b.HasOne("BlackboxFest.Models.Artist", "Artist")
+                        .WithMany()
+                        .HasForeignKey("ArtistID");
 
-                    b.HasOne("BlackboxFest.Models.Stage", null)
+                    b.HasOne("BlackboxFest.Models.Stage", "Stage")
                         .WithMany("Concert")
-                        .HasForeignKey("StageId");
+                        .HasForeignKey("StageID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BlackboxFest.Models.TimeSlot", "TimeSlot")
+                        .WithMany("Concert")
+                        .HasForeignKey("TimeSlotID");
                 });
 
             modelBuilder.Entity("BlackboxFest.Models.News", b =>
@@ -592,9 +711,15 @@ namespace BlackboxFest.Migrations
 
             modelBuilder.Entity("BlackboxFest.Models.TimeTable", b =>
                 {
-                    b.HasOne("BlackboxFest.Models.Artist", "Artists")
-                        .WithMany("Timetables")
+                    b.HasOne("BlackboxFest.Models.Artist", "Artist")
+                        .WithMany()
                         .HasForeignKey("ArtistId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BlackboxFest.Models.Concert", "Concert")
+                        .WithMany()
+                        .HasForeignKey("ConcertId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

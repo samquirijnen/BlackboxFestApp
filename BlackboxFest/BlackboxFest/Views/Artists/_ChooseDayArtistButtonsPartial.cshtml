@@ -1,0 +1,38 @@
+﻿@model BlackboxFest.ViewModels.ConcertViewModel
+
+<div class="row d-flex justify-content-center mb-4">
+    <div>
+        <form asp-controller="Artists" asp-action="ArtistViewUser" method="get">
+            <div class="form-actions">
+                <input type="submit" value="ALL" class=" ColorGold btn  " />
+
+            </div>
+        </form>
+    </div>
+
+    <div>
+        <form asp-controller="Artists" asp-action="ArtistDay1" method="get">
+            <div class="form-actions">
+                <input type="submit" value="Day1" class=" ColorGold btn  " />
+
+            </div>
+        </form>
+    </div>
+    <div>
+        <form asp-controller="Artists" asp-action="ArtistDay2" method="get">
+            <div class="form-actions">
+                <input type="submit" value="Day2" class="  ColorGold btn " />
+
+            </div>
+        </form>
+    </div>
+    <div>
+        <form asp-controller="Artists" asp-action="ArtistDay3" method="get">
+            <div class="form-actions">
+                <input type="submit" value="Day3" class="  ColorGold btn " />
+
+            </div>
+        </form>
+    </div>
+
+</div>
