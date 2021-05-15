@@ -10,9 +10,11 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Day 1</title>
+    <link href="~/css/style.css" rel="stylesheet" />
 </head>
 <body>
-    <h2 class=" d-flex justify-content-center mb-5">TIMETABLE DAY1 FRIDAY</h2>
-    @await Html.PartialAsync("_TimeTableAdminPartial");
+    <h2 class=" d-flex justify-content-center mb-3">TIMETABLE DAY1 FRIDAY</h2>
+    <h4 class=" d-flex justify-content-center mb-3">(Click on  <img src="~/Images/EditlButton.png" asp-append-version="true" style="width:0.8em; height:0.8em;margin-left:0.5em;margin-right:0.5em;" />  to add or edit a Artist)</h4>
+    @await Html.PartialAsync("_TimeTableAdminPartial")
 </body>
 </html>

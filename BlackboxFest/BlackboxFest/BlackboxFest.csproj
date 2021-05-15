@@ -17,6 +17,8 @@
     <Compile Remove="Migrations\20210428070332_AddGallery2.Designer.cs" />
     <Compile Remove="Migrations\20210428070634_AddGallery2.cs" />
     <Compile Remove="Migrations\20210428070634_AddGallery2.Designer.cs" />
+    <Compile Remove="Migrations\20210510062159_AddShopcartModels.cs" />
+    <Compile Remove="Migrations\20210510062159_AddShopcartModels.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

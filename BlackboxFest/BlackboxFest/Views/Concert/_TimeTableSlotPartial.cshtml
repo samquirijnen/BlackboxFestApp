@@ -8,26 +8,34 @@
 
         @if (User.IsInRole("Admin"))
         {
-           <h6 class="m-2 card-title ColorGold">@Html.DisplayFor(modelitem => @Model.Artist.Name)</h6>
+            <h6 class="m-2 card-title ColorGold">@Html.DisplayFor(modelitem => @Model.Artist.Name)</h6>
 
-            <a class="m-2" asp-controller="Concert" asp-action="Edit" asp-route-id="@Model.Id"><img src="~/Images/EditlButton.png" asp-append-version="true" style="width:1em; height:1em;" /></a> 
+            <a class="m-2" asp-controller="Concert" asp-action="Edit" asp-route-id="@Model.Id"><img src="~/Images/EditlButton.png" asp-append-version="true" style="width:1em; height:1em;" /></a>
 
-           <a  class="m-2" asp-controller="Concert"  asp-action = "Delete" asp-route-id = "@Model.Id"><img src = "~/Images/Icon material-delete.png" asp-append-version="true" style="width:1em; height:1em;" /></a>
 
-}
-else
 
-{
-    <a asp-controller="Artists" asp-action="Details" asp-route-id="@Model.Artist.Id" style="text-decoration: none;"><h6 class="card-title ColorGold">@Html.DisplayFor(modelitem => @Model.Artist.Name)</h6></a>
+        }
+        else
 
-}
+        {
+            if (Model.ArtistID != null)
+            {
+
+
+                <a asp-controller="Artists" asp-action="Details" asp-route-id="@Model.Artist.Id" style="text-decoration: none;"><h6 class="card-title ColorGold">@Html.DisplayFor(modelitem => @Model.Artist.Name)</h6></a>
+            }
+            else
+            {
+                <h6 class="card-title ColorGold">TBC</h6>
+            }
+        }
 
 
     </div>
 
     <div class="d-flex justify-content-center">
-      
 
-        <h6 class="card-title ColorGold">@Model.TimeSlot.Hour</h6>
-    </div>
+
+            <h6 class="card-title ColorGold">@Model.TimeSlot.Hour</h6>
+        </div>
 </div>

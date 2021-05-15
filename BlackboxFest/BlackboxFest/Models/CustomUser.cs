@@ -14,9 +14,7 @@ namespace BlackboxFest.Models
       
         
        // public DateTime DateOfBirth { get; set; }
-        public int? TicketId { get; set; }
-        [ForeignKey("TicketId")]
-        public virtual Ticket GetTicket { get; set; }
+      
 
     }
 }

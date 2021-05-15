@@ -16,12 +16,19 @@
 .backgroundNews {
     background-image: url('../images/background4.png');
 }
+.backgroundLogin {
+    background-image: url('../images/background8.png');
+}
+
 
 .navbar {
     opacity: 0.8;
 }
 .ColorGold{
     color: #B3A813;
+}
+.ColorWhite {
+    color: #FFFFFF;
 }
 .backgroundColorGold {
     background-color: #B3A813;

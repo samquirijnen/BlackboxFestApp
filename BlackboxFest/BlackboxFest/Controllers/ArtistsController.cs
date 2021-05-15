@@ -43,7 +43,7 @@ namespace BlackboxFest.Controllers
 
 
             ConcertViewModel viewModel = new ConcertViewModel();
-            viewModel.Concerts = await _uow.ConcertRepository.GetAll().Include(c => c.Artist).Include(c => c.Stage).ToListAsync();
+            viewModel.Concerts = await _uow.ConcertRepository.GetAll().Include(c => c.Artist).Include(c => c.Stage).Include(x=>x.DateDayFestival).OrderBy(x=>x.Artist.Name).ToListAsync();
             return View(viewModel);
 
 
@@ -52,7 +52,7 @@ namespace BlackboxFest.Controllers
         public async Task<IActionResult> ArtistDay1()
         {
             ConcertViewModel viewModel = new ConcertViewModel();
-            viewModel.Concerts = await _uow.ConcertRepository.GetAll().Include(c => c.Artist).Include(c => c.Stage).ToListAsync();
+            viewModel.Concerts = await _uow.ConcertRepository.GetAll().Include(c => c.Artist).Include(c => c.Stage).Include(x => x.DateDayFestival).OrderBy(x => x.Artist.Name).ToListAsync();
             return View(viewModel);
 
 
@@ -61,7 +61,7 @@ namespace BlackboxFest.Controllers
         public async Task<IActionResult> ArtistDay2()
         {
             ConcertViewModel viewModel = new ConcertViewModel();
-            viewModel.Concerts = await _uow.ConcertRepository.GetAll().Include(c => c.Artist).Include(c => c.Stage).ToListAsync();
+            viewModel.Concerts = await _uow.ConcertRepository.GetAll().Include(c => c.Artist).Include(c => c.Stage).Include(x => x.DateDayFestival).OrderBy(x => x.Artist.Name).ToListAsync();
             return View(viewModel);
 
 
@@ -70,7 +70,7 @@ namespace BlackboxFest.Controllers
         public async Task<IActionResult> ArtistDay3()
         {
             ConcertViewModel viewModel = new ConcertViewModel();
-            viewModel.Concerts = await _uow.ConcertRepository.GetAll().Include(c => c.Artist).Include(c => c.Stage).ToListAsync();
+            viewModel.Concerts = await _uow.ConcertRepository.GetAll().Include(c => c.Artist).Include(c => c.Stage).Include(x => x.DateDayFestival).OrderBy(x => x.Artist.Name).ToListAsync();
             return View(viewModel);
 
 
@@ -237,11 +237,26 @@ namespace BlackboxFest.Controllers
         // POST: Artists/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id,ArtistViewModel viewModel)
         {
            
-            var artist = await _uow.ArtistRepository.GetById(id);
-            _uow.ArtistRepository.Delete(artist);
+            viewModel.Artist = await _uow.ArtistRepository.GetById(id);
+            viewModel.Concerts = await _uow.ConcertRepository.GetAll().Where(x => x.ArtistID == id).ToListAsync();
+
+            if (viewModel.Artist != null)
+            {
+                if (id != viewModel.Artist.Id)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    _uow.ArtistRepository.Delete(viewModel.Artist);
+                   
+                }
+            }
+          
+           
            
             await _uow.Save();
            return RedirectToAction(nameof(Index));
@@ -272,13 +287,31 @@ namespace BlackboxFest.Controllers
             }
             return View("ArtistViewUser", viewModel);
         }
+       
+        public async Task<IActionResult> SearchAdmin(ArtistViewModel viewModel)
+        {
+            if (!string.IsNullOrWhiteSpace(viewModel.EventSearch))
+            {
+
+                viewModel.Artists = await _uow.ArtistRepository.GetAll()
+
+                   .Where(e => e.Name.Contains(viewModel.EventSearch))
+
+                   .ToListAsync();
+            }
+            else
+            {
+                viewModel.Artists = await _uow.ArtistRepository.GetAll().ToListAsync();
+            }
+            return View("Index", viewModel);
+        }
         [AllowAnonymous]
         public async Task<IActionResult> Day1Button(ConcertViewModel viewModel)
         {
 
 
 
-            viewModel.Concerts = await _uow.ConcertRepository.GetAll().Include(x=>x.Artist).Where(x => x.Date == DateTime.Parse("25/09/2021")).ToListAsync();
+            viewModel.Concerts = await _uow.ConcertRepository.GetAll().Include(x=>x.Artist).ToListAsync();
 
 
            

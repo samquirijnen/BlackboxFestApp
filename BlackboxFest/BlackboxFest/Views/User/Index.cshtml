@@ -1,18 +1,18 @@
-﻿@model  IEnumerable<BlackboxFest.Models.CustomUser>
+﻿@model BlackboxFest.ViewModels.UserViewModel
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.FirstName)
+                @Html.DisplayNameFor(model => model.User.FirstName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LastName)
+                @Html.DisplayNameFor(model => model.User.LastName)
             </th>
            
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Users)
         {
             <tr>
                 <td>

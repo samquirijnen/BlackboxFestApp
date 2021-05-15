@@ -20,6 +20,9 @@ namespace BlackboxFest.ViewModels
         public SelectList ArtistList { get; set; }
         public TimeSlot TimeSlot { get; set; }
         public SelectList TimeSlots { get; set; }
+        public bool AssignedArtist { get; set; }
+        public DateDayFestival DateDayFestival { get; set; }
+        public SelectList DateDayFestivals { get; set; }
 
     }
 }

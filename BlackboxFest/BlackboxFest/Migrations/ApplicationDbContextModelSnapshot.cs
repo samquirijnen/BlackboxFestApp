@@ -116,8 +116,8 @@ namespace BlackboxFest.Migrations
                     b.Property<int?>("ArtistID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("DateID")
+                        .HasColumnType("int");
 
                     b.Property<int>("StageID")
                         .HasColumnType("int");
@@ -129,11 +129,463 @@ namespace BlackboxFest.Migrations
 
                     b.HasIndex("ArtistID");
 
+                    b.HasIndex("DateID");
+
                     b.HasIndex("StageID");
 
                     b.HasIndex("TimeSlotID");
 
                     b.ToTable("Concerts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 45,
+                            DateID = 1,
+                            StageID = 1,
+                            TimeSlotID = 1
+                        },
+                        new
+                        {
+                            Id = 46,
+                            DateID = 1,
+                            StageID = 2,
+                            TimeSlotID = 2
+                        },
+                        new
+                        {
+                            Id = 47,
+                            DateID = 1,
+                            StageID = 1,
+                            TimeSlotID = 3
+                        },
+                        new
+                        {
+                            Id = 48,
+                            DateID = 1,
+                            StageID = 1,
+                            TimeSlotID = 5
+                        },
+                        new
+                        {
+                            Id = 49,
+                            DateID = 1,
+                            StageID = 1,
+                            TimeSlotID = 7
+                        },
+                        new
+                        {
+                            Id = 50,
+                            DateID = 1,
+                            StageID = 1,
+                            TimeSlotID = 9
+                        },
+                        new
+                        {
+                            Id = 51,
+                            DateID = 1,
+                            StageID = 2,
+                            TimeSlotID = 4
+                        },
+                        new
+                        {
+                            Id = 52,
+                            DateID = 1,
+                            StageID = 2,
+                            TimeSlotID = 6
+                        },
+                        new
+                        {
+                            Id = 53,
+                            DateID = 1,
+                            StageID = 2,
+                            TimeSlotID = 8
+                        },
+                        new
+                        {
+                            Id = 54,
+                            DateID = 1,
+                            StageID = 2,
+                            TimeSlotID = 10
+                        },
+                        new
+                        {
+                            Id = 55,
+                            DateID = 1,
+                            StageID = 3,
+                            TimeSlotID = 1
+                        },
+                        new
+                        {
+                            Id = 56,
+                            DateID = 1,
+                            StageID = 3,
+                            TimeSlotID = 3
+                        },
+                        new
+                        {
+                            Id = 57,
+                            DateID = 1,
+                            StageID = 3,
+                            TimeSlotID = 5
+                        },
+                        new
+                        {
+                            Id = 58,
+                            DateID = 1,
+                            StageID = 3,
+                            TimeSlotID = 7
+                        },
+                        new
+                        {
+                            Id = 59,
+                            DateID = 1,
+                            StageID = 3,
+                            TimeSlotID = 9
+                        },
+                        new
+                        {
+                            Id = 60,
+                            DateID = 1,
+                            StageID = 3,
+                            TimeSlotID = 11
+                        },
+                        new
+                        {
+                            Id = 61,
+                            DateID = 1,
+                            StageID = 4,
+                            TimeSlotID = 2
+                        },
+                        new
+                        {
+                            Id = 62,
+                            DateID = 1,
+                            StageID = 4,
+                            TimeSlotID = 4
+                        },
+                        new
+                        {
+                            Id = 63,
+                            DateID = 1,
+                            StageID = 4,
+                            TimeSlotID = 6
+                        },
+                        new
+                        {
+                            Id = 64,
+                            DateID = 1,
+                            StageID = 4,
+                            TimeSlotID = 8
+                        },
+                        new
+                        {
+                            Id = 65,
+                            DateID = 1,
+                            StageID = 4,
+                            TimeSlotID = 10
+                        },
+                        new
+                        {
+                            Id = 66,
+                            DateID = 2,
+                            StageID = 1,
+                            TimeSlotID = 1
+                        },
+                        new
+                        {
+                            Id = 67,
+                            DateID = 2,
+                            StageID = 1,
+                            TimeSlotID = 3
+                        },
+                        new
+                        {
+                            Id = 68,
+                            DateID = 2,
+                            StageID = 1,
+                            TimeSlotID = 5
+                        },
+                        new
+                        {
+                            Id = 69,
+                            DateID = 2,
+                            StageID = 1,
+                            TimeSlotID = 7
+                        },
+                        new
+                        {
+                            Id = 70,
+                            DateID = 2,
+                            StageID = 1,
+                            TimeSlotID = 9
+                        },
+                        new
+                        {
+                            Id = 71,
+                            DateID = 2,
+                            StageID = 1,
+                            TimeSlotID = 11
+                        },
+                        new
+                        {
+                            Id = 72,
+                            DateID = 2,
+                            StageID = 2,
+                            TimeSlotID = 2
+                        },
+                        new
+                        {
+                            Id = 73,
+                            DateID = 2,
+                            StageID = 2,
+                            TimeSlotID = 4
+                        },
+                        new
+                        {
+                            Id = 74,
+                            DateID = 2,
+                            StageID = 2,
+                            TimeSlotID = 6
+                        },
+                        new
+                        {
+                            Id = 75,
+                            DateID = 2,
+                            StageID = 2,
+                            TimeSlotID = 10
+                        },
+                        new
+                        {
+                            Id = 76,
+                            DateID = 2,
+                            StageID = 3,
+                            TimeSlotID = 1
+                        },
+                        new
+                        {
+                            Id = 77,
+                            DateID = 2,
+                            StageID = 3,
+                            TimeSlotID = 3
+                        },
+                        new
+                        {
+                            Id = 78,
+                            DateID = 2,
+                            StageID = 3,
+                            TimeSlotID = 5
+                        },
+                        new
+                        {
+                            Id = 79,
+                            DateID = 2,
+                            StageID = 3,
+                            TimeSlotID = 7
+                        },
+                        new
+                        {
+                            Id = 80,
+                            DateID = 2,
+                            StageID = 3,
+                            TimeSlotID = 9
+                        },
+                        new
+                        {
+                            Id = 81,
+                            DateID = 2,
+                            StageID = 3,
+                            TimeSlotID = 11
+                        },
+                        new
+                        {
+                            Id = 82,
+                            DateID = 2,
+                            StageID = 4,
+                            TimeSlotID = 2
+                        },
+                        new
+                        {
+                            Id = 83,
+                            DateID = 2,
+                            StageID = 4,
+                            TimeSlotID = 4
+                        },
+                        new
+                        {
+                            Id = 84,
+                            DateID = 2,
+                            StageID = 4,
+                            TimeSlotID = 6
+                        },
+                        new
+                        {
+                            Id = 85,
+                            DateID = 2,
+                            StageID = 4,
+                            TimeSlotID = 8
+                        },
+                        new
+                        {
+                            Id = 86,
+                            DateID = 2,
+                            StageID = 4,
+                            TimeSlotID = 10
+                        },
+                        new
+                        {
+                            Id = 87,
+                            DateID = 3,
+                            StageID = 1,
+                            TimeSlotID = 1
+                        },
+                        new
+                        {
+                            Id = 88,
+                            DateID = 3,
+                            StageID = 1,
+                            TimeSlotID = 3
+                        },
+                        new
+                        {
+                            Id = 89,
+                            DateID = 3,
+                            StageID = 1,
+                            TimeSlotID = 5
+                        },
+                        new
+                        {
+                            Id = 90,
+                            DateID = 3,
+                            StageID = 1,
+                            TimeSlotID = 7
+                        },
+                        new
+                        {
+                            Id = 91,
+                            DateID = 3,
+                            StageID = 1,
+                            TimeSlotID = 9
+                        },
+                        new
+                        {
+                            Id = 92,
+                            DateID = 3,
+                            StageID = 1,
+                            TimeSlotID = 11
+                        },
+                        new
+                        {
+                            Id = 93,
+                            DateID = 3,
+                            StageID = 2,
+                            TimeSlotID = 2
+                        },
+                        new
+                        {
+                            Id = 94,
+                            DateID = 3,
+                            StageID = 2,
+                            TimeSlotID = 4
+                        },
+                        new
+                        {
+                            Id = 95,
+                            DateID = 3,
+                            StageID = 2,
+                            TimeSlotID = 6
+                        },
+                        new
+                        {
+                            Id = 96,
+                            DateID = 3,
+                            StageID = 2,
+                            TimeSlotID = 8
+                        },
+                        new
+                        {
+                            Id = 97,
+                            DateID = 3,
+                            StageID = 2,
+                            TimeSlotID = 10
+                        },
+                        new
+                        {
+                            Id = 98,
+                            DateID = 3,
+                            StageID = 3,
+                            TimeSlotID = 1
+                        },
+                        new
+                        {
+                            Id = 99,
+                            DateID = 3,
+                            StageID = 3,
+                            TimeSlotID = 3
+                        },
+                        new
+                        {
+                            Id = 100,
+                            DateID = 3,
+                            StageID = 3,
+                            TimeSlotID = 5
+                        },
+                        new
+                        {
+                            Id = 101,
+                            DateID = 3,
+                            StageID = 3,
+                            TimeSlotID = 7
+                        },
+                        new
+                        {
+                            Id = 102,
+                            DateID = 3,
+                            StageID = 3,
+                            TimeSlotID = 9
+                        },
+                        new
+                        {
+                            Id = 103,
+                            DateID = 3,
+                            StageID = 3,
+                            TimeSlotID = 11
+                        },
+                        new
+                        {
+                            Id = 104,
+                            DateID = 3,
+                            StageID = 4,
+                            TimeSlotID = 2
+                        },
+                        new
+                        {
+                            Id = 105,
+                            DateID = 3,
+                            StageID = 4,
+                            TimeSlotID = 4
+                        },
+                        new
+                        {
+                            Id = 106,
+                            DateID = 3,
+                            StageID = 4,
+                            TimeSlotID = 6
+                        },
+                        new
+                        {
+                            Id = 107,
+                            DateID = 3,
+                            StageID = 4,
+                            TimeSlotID = 8
+                        },
+                        new
+                        {
+                            Id = 108,
+                            DateID = 3,
+                            StageID = 4,
+                            TimeSlotID = 10
+                        });
                 });
 
             modelBuilder.Entity("BlackboxFest.Models.Country", b =>
@@ -150,6 +602,39 @@ namespace BlackboxFest.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Countries");
+                });
+
+            modelBuilder.Entity("BlackboxFest.Models.DateDayFestival", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Date")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DateDayFestival");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Date = "24/09/2021"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Date = "25/09/2021"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Date = "26/09/2021"
+                        });
                 });
 
             modelBuilder.Entity("BlackboxFest.Models.Gallery", b =>
@@ -238,7 +723,7 @@ namespace BlackboxFest.Migrations
                         });
                 });
 
-            modelBuilder.Entity("BlackboxFest.Models.Ticket", b =>
+            modelBuilder.Entity("BlackboxFest.Models.TicketOrder", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -248,14 +733,76 @@ namespace BlackboxFest.Migrations
                     b.Property<DateTime>("BookingsDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("CustomUserID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("OrderStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("OrderTotal")
+                        .HasColumnType("float");
+
+                    b.Property<string>("PaymentStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomUserID");
+
+                    b.ToTable("TicketOrders");
+                });
+
+            modelBuilder.Entity("BlackboxFest.Models.TicketOrderDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int>("TicketOrderId")
+                        .HasColumnType("int");
+
                     b.Property<int>("TypeTicketId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("TicketOrderId");
+
                     b.HasIndex("TypeTicketId");
 
-                    b.ToTable("Tickets");
+                    b.ToTable("TicketOrderDetails");
+                });
+
+            modelBuilder.Entity("BlackboxFest.Models.TicketShopCart", b =>
+                {
+                    b.Property<int>("TicketId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CountTypeTickets")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CustomUserID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("TypeTicketID")
+                        .HasColumnType("int");
+
+                    b.HasKey("TicketId");
+
+                    b.HasIndex("CustomUserID");
+
+                    b.HasIndex("TypeTicketID");
+
+                    b.ToTable("TicketShopCarts");
                 });
 
             modelBuilder.Entity("BlackboxFest.Models.TimeSlot", b =>
@@ -646,11 +1193,6 @@ namespace BlackboxFest.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("TicketId")
-                        .HasColumnType("int");
-
-                    b.HasIndex("TicketId");
-
                     b.HasDiscriminator().HasValue("CustomUser");
                 });
 
@@ -682,6 +1224,12 @@ namespace BlackboxFest.Migrations
                         .WithMany()
                         .HasForeignKey("ArtistID");
 
+                    b.HasOne("BlackboxFest.Models.DateDayFestival", "DateDayFestival")
+                        .WithMany("Concert")
+                        .HasForeignKey("DateID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("BlackboxFest.Models.Stage", "Stage")
                         .WithMany("Concert")
                         .HasForeignKey("StageID")
@@ -700,11 +1248,37 @@ namespace BlackboxFest.Migrations
                         .HasForeignKey("NewsId");
                 });
 
-            modelBuilder.Entity("BlackboxFest.Models.Ticket", b =>
+            modelBuilder.Entity("BlackboxFest.Models.TicketOrder", b =>
                 {
-                    b.HasOne("BlackboxFest.Models.TypeTicket", "Type")
+                    b.HasOne("BlackboxFest.Models.CustomUser", "CustomUser")
+                        .WithMany()
+                        .HasForeignKey("CustomUserID");
+                });
+
+            modelBuilder.Entity("BlackboxFest.Models.TicketOrderDetail", b =>
+                {
+                    b.HasOne("BlackboxFest.Models.TicketOrder", "TicketOrder")
+                        .WithMany()
+                        .HasForeignKey("TicketOrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BlackboxFest.Models.TypeTicket", "TypeTicket")
                         .WithMany()
                         .HasForeignKey("TypeTicketId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BlackboxFest.Models.TicketShopCart", b =>
+                {
+                    b.HasOne("BlackboxFest.Models.CustomUser", "CustomUser")
+                        .WithMany()
+                        .HasForeignKey("CustomUserID");
+
+                    b.HasOne("BlackboxFest.Models.TypeTicket", "TypeTicket")
+                        .WithMany()
+                        .HasForeignKey("TypeTicketID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -791,13 +1365,6 @@ namespace BlackboxFest.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("BlackboxFest.Models.CustomUser", b =>
-                {
-                    b.HasOne("BlackboxFest.Models.Ticket", "GetTicket")
-                        .WithMany()
-                        .HasForeignKey("TicketId");
                 });
 #pragma warning restore 612, 618
         }

@@ -35,6 +35,14 @@ namespace BlackboxFest
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+            services.AddHttpContextAccessor();
+           services.AddSession(options => 
+           {
+               options.IdleTimeout = TimeSpan.FromMinutes(10);
+               options.Cookie.HttpOnly = true;
+               options.Cookie.IsEssential = true;
+           
+           });
             services.AddIdentity<CustomUser,IdentityRole>(options=> { options.Password.RequireDigit = false;
                 options.Password.RequireUppercase = false
               ;
@@ -51,8 +59,12 @@ namespace BlackboxFest
             services.AddScoped<IGenericRepository<Concert>, GenericRepository<Concert>>();
             services.AddScoped<IGenericRepository<Stage>, GenericRepository<Stage>>();
             services.AddScoped<IGenericRepository<TypeTicket>, GenericRepository<TypeTicket>>();
-            services.AddScoped<IGenericRepository<Ticket>, GenericRepository<Ticket>>();
+            services.AddScoped<IGenericRepository<TicketOrder>, GenericRepository<TicketOrder>>();
             services.AddScoped<IGenericRepository<TimeSlot>, GenericRepository<TimeSlot>>();
+            services.AddScoped<IGenericRepository<CustomUser>, GenericRepository<CustomUser>>();
+            services.AddScoped<IGenericRepository<TicketOrderDetail>, GenericRepository<TicketOrderDetail>>();
+            services.AddScoped<IGenericRepository<TicketShopCart>, GenericRepository<TicketShopCart>>();
+            services.AddScoped<IGenericRepository<DateDayFestival>, GenericRepository<DateDayFestival>>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         }
@@ -78,6 +90,7 @@ namespace BlackboxFest
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseSession();
             app.UseNotyf();
             app.UseEndpoints(endpoints =>
             {
@@ -99,7 +112,7 @@ namespace BlackboxFest
             if (!roleCheck)
             {
                 roleResult = await RoleManager.CreateAsync(new IdentityRole("Admin"));
-               
+
             }
             IdentityUser user = Context.Users.FirstOrDefault(u => u.UserName == "Admin");
             if (user != null)
@@ -108,9 +121,9 @@ namespace BlackboxFest
                 IdentityRole adminRole = Context.Roles.FirstOrDefault(r => r.Name == "Admin");
                 if (adminRole != null)
                 {
-                    if (!roles.Any(ur=>ur.UserId == user.Id && ur.RoleId == adminRole.Id))
+                    if (!roles.Any(ur => ur.UserId == user.Id && ur.RoleId == adminRole.Id))
                     {
-                        roles.Add(new IdentityUserRole<string>() {UserId = user.Id, RoleId = adminRole.Id });
+                        roles.Add(new IdentityUserRole<string>() { UserId = user.Id, RoleId = adminRole.Id });
                         Context.SaveChanges();
                     }
                 }
