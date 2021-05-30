@@ -38,39 +38,45 @@ namespace BlackboxFest.Controllers
             return View(viewModel);
         }
         [AllowAnonymous]
-        public async Task<IActionResult> ArtistViewUser()
+        public async Task<IActionResult> GetArtists(ConcertViewModel viewModel)
         {
 
 
-            ConcertViewModel viewModel = new ConcertViewModel();
-            viewModel.Concerts = await _uow.ConcertRepository.GetAll().Include(c => c.Artist).Include(c => c.Stage).ToListAsync();
+         
+            viewModel.Concerts = await _uow.ConcertRepository.GetAll().Include(c => c.Artist).Include(c => c.Stage).Include(x => x.DateDayFestival).OrderBy(x => x.Artist.Name).ToListAsync();
             return View(viewModel);
 
 
         }
         [AllowAnonymous]
-        public async Task<IActionResult> ArtistDay1()
+        public async Task<IActionResult> ArtistViewUser(ConcertViewModel viewModel)
         {
-            ConcertViewModel viewModel = new ConcertViewModel();
-            viewModel.Concerts = await _uow.ConcertRepository.GetAll().Include(c => c.Artist).Include(c => c.Stage).ToListAsync();
+
+           await GetArtists(viewModel);
             return View(viewModel);
 
 
         }
         [AllowAnonymous]
-        public async Task<IActionResult> ArtistDay2()
+        public async Task<IActionResult> ArtistDay1(ConcertViewModel viewModel)
         {
-            ConcertViewModel viewModel = new ConcertViewModel();
-            viewModel.Concerts = await _uow.ConcertRepository.GetAll().Include(c => c.Artist).Include(c => c.Stage).ToListAsync();
+            await GetArtists(viewModel);
             return View(viewModel);
 
 
         }
         [AllowAnonymous]
-        public async Task<IActionResult> ArtistDay3()
+        public async Task<IActionResult> ArtistDay2(ConcertViewModel viewModel)
         {
-            ConcertViewModel viewModel = new ConcertViewModel();
-            viewModel.Concerts = await _uow.ConcertRepository.GetAll().Include(c => c.Artist).Include(c => c.Stage).ToListAsync();
+            await GetArtists(viewModel);
+            return View(viewModel);
+
+
+        }
+        [AllowAnonymous]
+        public async Task<IActionResult> ArtistDay3(ConcertViewModel viewModel)
+        {
+            await GetArtists(viewModel);
             return View(viewModel);
 
 
@@ -110,8 +116,6 @@ namespace BlackboxFest.Controllers
             if (ModelState.IsValid)
             {
                 //Save image to wwwroot/image
-              
-
 
                     string wwwrootPath = _hostEnvironment.WebRootPath;
                     string FileName =  Path.GetFileNameWithoutExtension(artist.ImageFile.FileName);
@@ -123,7 +127,6 @@ namespace BlackboxFest.Controllers
                     {
                         await artist.ImageFile.CopyToAsync(fileStream);
                     }
-
 
                 //Insert record
              
@@ -142,8 +145,7 @@ namespace BlackboxFest.Controllers
             {
                 return NotFound();
             }
-
-        
+   
             var artist = await _uow.ArtistRepository.GetById(id);
             if (artist == null)
             {
@@ -222,8 +224,7 @@ namespace BlackboxFest.Controllers
             {
                 return NotFound();
             }
-
-          
+      
             var artist = await _uow.ArtistRepository.GetAll()
              .FirstOrDefaultAsync(m => m.Id == id);
             if (artist == null)
@@ -237,12 +238,25 @@ namespace BlackboxFest.Controllers
         // POST: Artists/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id,ArtistViewModel viewModel)
         {
            
-            var artist = await _uow.ArtistRepository.GetById(id);
-            _uow.ArtistRepository.Delete(artist);
-           
+            viewModel.Artist = await _uow.ArtistRepository.GetById(id);
+            viewModel.Concerts = await _uow.ConcertRepository.GetAll().Where(x => x.ArtistID == id).ToListAsync();
+
+            if (viewModel.Artist != null)
+            {
+                if (id != viewModel.Artist.Id)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    _uow.ArtistRepository.Delete(viewModel.Artist);
+                   
+                }
+            }
+      
             await _uow.Save();
            return RedirectToAction(nameof(Index));
      
@@ -250,7 +264,6 @@ namespace BlackboxFest.Controllers
 
         private bool ArtistExists(int id)
         {
-         
 
             return _uow.ArtistRepository.GetAll().Any(e => e.Id == id);
         }
@@ -272,20 +285,32 @@ namespace BlackboxFest.Controllers
             }
             return View("ArtistViewUser", viewModel);
         }
+       
+        public async Task<IActionResult> SearchAdmin(ArtistViewModel viewModel)
+        {
+            if (!string.IsNullOrWhiteSpace(viewModel.EventSearch))
+            {
+
+                viewModel.Artists = await _uow.ArtistRepository.GetAll()
+
+                   .Where(e => e.Name.Contains(viewModel.EventSearch))
+
+                   .ToListAsync();
+            }
+            else
+            {
+                viewModel.Artists = await _uow.ArtistRepository.GetAll().ToListAsync();
+            }
+            return View("Index", viewModel);
+        }
         [AllowAnonymous]
         public async Task<IActionResult> Day1Button(ConcertViewModel viewModel)
         {
 
-
-
-            viewModel.Concerts = await _uow.ConcertRepository.GetAll().Include(x=>x.Artist).Where(x => x.Date == DateTime.Parse("25/09/2021")).ToListAsync();
-
-
-           
+            viewModel.Concerts = await _uow.ConcertRepository.GetAll().Include(x=>x.Artist).ToListAsync();
+     
             return LocalRedirect("~/Artists/ArtistViewUser/" + viewModel);
         }
-
-
 
     }
 }

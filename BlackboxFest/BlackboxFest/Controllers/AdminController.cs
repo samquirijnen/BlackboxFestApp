@@ -12,8 +12,8 @@ namespace BlackboxFest.Controllers
     {
         public IActionResult Index()
         {
-            return View();
-          //  return LocalRedirect("~/Artists/Index/");
+           // return View();
+            return LocalRedirect("~/Artists/");
         }
     }
 }

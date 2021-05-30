@@ -44,7 +44,7 @@
             <div class="form-group">
                 <label asp-for="News.ImageFile" class="control-label"></label>
                 <input asp-for="News.ImageFile" accept="image/*" onchange="previewFile()" />
-                <img src="@Html.DisplayFor(modelItem=>modelItem.News.ImageName)" style="width:auto; height:auto" />
+                <img class="fotoAanpassen" src="@Html.DisplayFor(modelItem=>modelItem.News.ImageName)" style="width:100%; height:auto" />
                 <input type="hidden" asp-for="News.ImageName" />
              
                 <span asp-validation-for="News.ImageFile" class="text-danger"></span>

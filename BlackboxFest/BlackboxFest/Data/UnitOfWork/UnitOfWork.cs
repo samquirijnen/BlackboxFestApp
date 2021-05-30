@@ -16,8 +16,12 @@ namespace BlackboxFest.Data.UnitOfWork
         private IGenericRepository<Concert> concertRepository;
         private IGenericRepository<Stage> stageRepository;
         private IGenericRepository<TypeTicket> typeTicketRepository;
-        private IGenericRepository<Ticket> ticketRepository;
+        private IGenericRepository<TicketOrder> ticketOrderRepository;
+        private IGenericRepository<TicketOrderDetail> ticketOrderDetailRepository;
+        private IGenericRepository<TicketShopCart> ticketShopCartRepository;
         private IGenericRepository<TimeSlot> timeSlotRepository;
+        private IGenericRepository<CustomUser> userRepository;
+        private IGenericRepository<DateDayFestival> dateRepository;
         public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
@@ -94,15 +98,39 @@ namespace BlackboxFest.Data.UnitOfWork
             }
 
         }
-        public IGenericRepository<Ticket> TicketRepository
+        public IGenericRepository<TicketOrder> TicketOrderRepository
         {
             get
             {
-                if (ticketRepository == null)
+                if (ticketOrderRepository == null)
                 {
-                    ticketRepository = new GenericRepository<Ticket>(_context);
+                    ticketOrderRepository = new GenericRepository<TicketOrder>(_context);
                 }
-                return ticketRepository;
+                return ticketOrderRepository;
+            }
+
+        }
+        public IGenericRepository<TicketShopCart> TicketShopCartRepository
+        {
+            get
+            {
+                if (ticketShopCartRepository == null)
+                {
+                    ticketShopCartRepository = new GenericRepository<TicketShopCart>(_context);
+                }
+                return ticketShopCartRepository;
+            }
+
+        }
+        public IGenericRepository<TicketOrderDetail> TicketOrderDetailRepository
+        {
+            get
+            {
+                if (ticketOrderDetailRepository == null)
+                {
+                    ticketOrderDetailRepository = new GenericRepository<TicketOrderDetail>(_context);
+                }
+                return ticketOrderDetailRepository;
             }
 
         }
@@ -115,6 +143,30 @@ namespace BlackboxFest.Data.UnitOfWork
                     timeSlotRepository = new GenericRepository<TimeSlot>(_context);
                 }
                 return timeSlotRepository;
+            }
+
+        }
+        public IGenericRepository<CustomUser> UserRepository
+        {
+            get
+            {
+                if (userRepository == null)
+                {
+                    userRepository = new GenericRepository<CustomUser>(_context);
+                }
+                return userRepository;
+            }
+
+        }
+        public IGenericRepository<DateDayFestival> DateDayFestivalRepository
+        {
+            get
+            {
+                if (dateRepository == null)
+                {
+                    dateRepository = new GenericRepository<DateDayFestival>(_context);
+                }
+                return dateRepository;
             }
 
         }

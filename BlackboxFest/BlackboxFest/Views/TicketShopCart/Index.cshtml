@@ -1,0 +1,87 @@
+﻿@model BlackboxFest.ViewModels.TicketShopCartViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/userPagina.css" />
+    @section Head
+{
+        <style>
+            body {
+                background-image: url("../images/background2.png");
+            }
+        </style>
+    }
+</head>
+<body>
+    <div class="mainBlock p-5 ">
+        <h2 class="d-flex justify-content-center ColorGold mb-5">Tickets</h2>
+        <form method="post"  asp-action="AddToCart">
+            <input asp-for="@Model.TypeTicket.Id" type="hidden" />
+            <div class="row d-flex justify-content-center">
+                <div>
+                    <h5 class="d-flex justify-content-center ml-5 ColorWhite">TICKETTYPE</h5>
+                    @foreach (var item in Model.TypeTickets)
+                    {
+                        <div>
+                            <h4 class=" mb-5 mt-3  ml-5 ColorGold">@item.Name</h4>
+                        </div>
+
+                      
+
+                    }
+                </div>
+                <div>
+                    <h5 class="d-flex justify-content-center  ml-5  ColorWhite">PRICE</h5>
+                    @foreach (var item in Model.TypeTickets)
+                    {
+
+                        <div>
+                            <h4 class=" mb-5 mt-3 ml-5 ColorGold">@item.Price €</h4>
+                        </div>
+
+                    }
+                </div>
+                @*<div>
+                    <h5 class="d-flex justify-content-center ml-5 ColorWhite">QTY</h5>
+                    @foreach (var item in Model.TypeTickets)
+                    {
+                        <div class="form-group ml-auto ">
+
+                            <input asp-for="TicketShopCart.CountTypeTickets" class="form-control ColorGold ml-5  mb-5" min="0" style="width:5em; height:2em; background-color:black; border:none" />
+
+                        </div>
+
+                    }
+
+                </div>*@
+                <div>
+                    <h5 class="d-flex justify-content-center  ml-5 ColorWhite">CART</h5>
+                    @foreach (var item in Model.TypeTickets)
+                    {
+
+
+                        <div>
+                            <button type="submit" asp-route-id="@item.Id"  asp-action="AddToCart" class="colorButton btn btn-secondary ml-5  mb-5" style="height:2em">Add To Cart</button>
+
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </form>
+       
+        </div>
+    
+</body>
+</html>
+

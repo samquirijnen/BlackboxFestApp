@@ -9,10 +9,10 @@ namespace BlackboxFest.Models
     public class Concert
     {
         public int Id { get; set; }
-        [Required]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
-        public DateTime Date { get; set; }
+        public int DateID { get; set; }
+        [ForeignKey("DateID")]
+        public DateDayFestival DateDayFestival { get; set; }
+
         public int StageID { get; set; }
         [ForeignKey("StageID")]
         public Stage Stage { get; set; }

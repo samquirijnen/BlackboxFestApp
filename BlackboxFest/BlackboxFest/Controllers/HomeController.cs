@@ -24,16 +24,12 @@ namespace BlackboxFest.Controllers
             {
                 return View();
             }
-            //  ViewBag.ImagePath = "../images/festivalBackground.jpeg";
+          
             return View("IndexUser");
         }
         public IActionResult IndexUser()
         {
-            //if (User.IsInRole("Admin"))
-            //{
-            //    return RedirectToAction();
-            //}
-            //  ViewBag.ImagePath = "../images/festivalBackground.jpeg";
+        
             return View();
         }
 

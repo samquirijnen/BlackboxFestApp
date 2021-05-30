@@ -1,0 +1,69 @@
+﻿@model BlackboxFest.ViewModels.ConcertViewModel
+
+        @await Html.PartialAsync("_ChooseDayButtonsPartial")
+<div class="pt-5" style="background-color:black;border-radius:2%">
+    <div class="row">
+        <div class="ColorWhite visible">
+            <h5 class="d-flex justify-content-center ml-5 mb-2 ColorGold">HOUR</h5>
+
+            @for (int i = 12; i < 25; i++)
+            {
+                <h5 class="d-flex justify-content-center ml-5" style="margin-bottom:2.9rem">@i .00u</h5>
+            }
+        </div>
+        <div>
+            <h5 class="d-flex justify-content-center ml-5 mb-3 ColorGold">MAINSTAGE</h5>
+            @foreach (var item in Model.Concerts)
+            {
+
+                @if (item.StageID == 1)
+                {
+                    @await Html.PartialAsync("_TimeTableSlotPartial", item);
+                }
+
+            }
+        </div>
+        <div>
+            <h5 class="d-flex justify-content-center  ml-5 ColorGold">THE CRAVE</h5>
+            <div class="mt-5">
+                @foreach (var item in Model.Concerts)
+                {
+
+                    @if (item.StageID == 2)
+                    {
+                        @await Html.PartialAsync("_TimeTableSlotPartial", item);
+                    }
+
+                }
+            </div>
+        </div>
+        <div>
+            <h5 class="d-flex justify-content-center ml-5 ColorGold">TECHNOVILLE</h5>
+            @foreach (var item in Model.Concerts)
+            {
+
+                @if (item.StageID == 3)
+                {
+                    @await Html.PartialAsync("_TimeTableSlotPartial", item);
+                }
+
+
+            }
+        </div>
+        <div>
+            <h5 class="d-flex justify-content-center  ml-5 ColorGold">THE DOME</h5>
+            <div class="mt-5">
+                @foreach (var item in Model.Concerts)
+                {
+
+                    @if (item.StageID == 4)
+                    {
+                        @await Html.PartialAsync("_TimeTableSlotPartial", item);
+                    }
+
+
+                }
+            </div>
+        </div>
+    </div>
+</div>

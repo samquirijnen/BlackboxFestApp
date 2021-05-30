@@ -1,4 +1,6 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@using BlackboxFest.Sessions
 <header>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 fixed-top">
         <div class="container">
@@ -25,8 +27,30 @@
                         <a class="nav-link text-dark" asp-area="" asp-controller="Gallery" asp-action="GalleryViewUser">Gallery</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Tickets</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="TicketShopCart" asp-action="Index">Tickets</a>
                     </li>
+                    <li>
+           @if (HttpContextAccessor.HttpContext.Session.GetInt32("TicketShopCart") != null)
+           {
+            <a asp-action="TicketShopCartOverview" asp-controller="TicketShopCart" class="nav-link">
+                @{
+                    var count = HttpContextAccessor.HttpContext.Session.GetInt32("TicketShopCart");
+               
+                }
+
+                <img style="width:1em;height:1em;" src="~/images/shoppingCart.png" />&nbsp;(@count)
+
+            </a>
+                 }
+                 else
+                 {
+        <a href="#" class="nav-link">
+            <img  style="width:1em;height:1em;" src="~/images/shoppingCart.png" />&nbsp;(0)
+        </a>
+                 }
+        </li>
+                  
+                    
                 </ul>
             </div>
         </div>

@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using BlackboxFest.Models;
+using BlackboxFest.Data.UnitOfWork;
+using Microsoft.AspNetCore.Http;
 
 namespace BlackboxFest.Areas.Identity.Pages.Account
 {
@@ -21,14 +23,16 @@ namespace BlackboxFest.Areas.Identity.Pages.Account
         private readonly UserManager<CustomUser> _userManager;
         private readonly SignInManager<CustomUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly IUnitOfWork _unitOfWork;
 
         public LoginModel(SignInManager<CustomUser> signInManager, 
             ILogger<LoginModel> logger,
-            UserManager<CustomUser> userManager)
+            UserManager<CustomUser> userManager, IUnitOfWork unitOfWork)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            _unitOfWork = unitOfWork;
         }
 
         [BindProperty]
@@ -86,6 +90,9 @@ namespace BlackboxFest.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.UserName, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
+                    //var user = _unitOfWork.UserRepository.GetFirstOrDefault(u=>u.UserName == Input.UserName);
+                    //int count = _unitOfWork.TicketShopCartRepository.GetAllExtenssion(x=>x.CustomUserID==user.Id).Count();
+                    //HttpContext.Session.SetInt32(WebConstant.SessionCart, count);
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
                 }

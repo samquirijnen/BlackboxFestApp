@@ -1,4 +1,6 @@
 ﻿using BlackboxFest.Data;
+using BlackboxFest.Data.UnitOfWork;
+using BlackboxFest.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,17 +12,19 @@ namespace BlackboxFest.Controllers
 {
     public class UserController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        public UserController(ApplicationDbContext context)
+        private readonly IUnitOfWork _uow;
+        public UserController(IUnitOfWork uow)
         {
-            _context = context;
+            _uow = uow;
         }
        
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Users;
+            UserViewModel viewModel = new UserViewModel();
+            viewModel.Users =await _uow.UserRepository.GetAll().ToListAsync();
+           
           
-            return View(await applicationDbContext.ToListAsync());
+            return View(viewModel);
         }
     }
 }

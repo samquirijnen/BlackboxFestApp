@@ -15,8 +15,12 @@ namespace BlackboxFest.Data.UnitOfWork
         IGenericRepository<Concert> ConcertRepository { get; }
         IGenericRepository<Stage> StageRepository { get; }
         IGenericRepository<TypeTicket> TypeTicketRepository { get; }
-        IGenericRepository<Ticket> TicketRepository { get; }
+        IGenericRepository<TicketOrder> TicketOrderRepository { get; }
         IGenericRepository<TimeSlot> TimeSlotRepository { get; }
+        IGenericRepository<CustomUser> UserRepository { get; }
+        IGenericRepository<TicketOrderDetail> TicketOrderDetailRepository { get; }
+        IGenericRepository<TicketShopCart> TicketShopCartRepository { get; }
+        IGenericRepository<DateDayFestival> DateDayFestivalRepository { get; }
 
         Task Save();
     }

@@ -16,8 +16,22 @@
 
 </head>
 <body class="backgroundArtist">
-    <div class="row">
+    <h2 class=" d-flex justify-content-center">ARTISTS</h2>
+    <div class="row mt-5 ">
+        <div class="text-center ml-5">
+            <form asp-controller="Artists" asp-action="SearchAdmin" method="get">
+                <div class="form-actions ">
+                    <p>
+
+                        <input asp-for="EventSearch" placeholder="Search Artist" />
+                        <input type="submit" value="Search" class="   btn kleurblauwGroen" />
+                        <a class="ColorGold" asp-controller="Artists" asp-action="Index">Back to list</a>
+                    </p>
+                </div>
+            </form>
+        </div>
         <div class="col-2"></div>
+
         <div class="table col-10 d-flex justify-content-center">
 
             <table class="table table-dark ">
@@ -55,10 +69,15 @@
                             </td>
 
                             <td>
-                                <a asp-action="Edit" asp-route-id="@item.Id"><img src="~/Images/EditlButton.png" asp-append-version="true" style="width:2em; height:2em;" /></a> |
-                                
 
-                                <a asp-action="Delete" asp-route-id="@item.Id"> <img src="~/Images/Icon material-delete.png" asp-append-version="true" style="width:2em; height:2em;" /></a>
+                                <a asp-action="Edit" asp-route-id="@item.Id"><img src="~/Images/EditlButton.png" asp-append-version="true" style="width:1.8em; height:1.8em;" /></a>
+
+
+
+
+                            </td>
+                            <td>
+                                <a asp-action="Delete" asp-route-id="@item.Id"> <img src="~/Images/Icon material-delete.png" asp-append-version="true" style="width:1.8em; height:1.8em;" /></a>
                             </td>
                         </tr>
                     }
@@ -67,5 +86,7 @@
 
         </div>
     </div>
+    <script src="~/js/scripts.js"></script>
+
 </body>
 </html>

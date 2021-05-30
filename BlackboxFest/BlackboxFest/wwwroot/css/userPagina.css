@@ -11,17 +11,27 @@
     background-image: url('../images/festivalBackground.jpeg');
 }
 .backgroundArtist {
-    background-image: url('../images/background3.png');
+    background-image: url('../images/background9.png');
 }
 .backgroundNews {
     background-image: url('../images/background4.png');
 }
+.backgroundLogin {
+    background-image: url('../images/background8.png');
+}
+.bottom-buffer {
+    margin-bottom: 2.2rem;
+}
+
 
 .navbar {
     opacity: 0.8;
 }
 .ColorGold{
     color: #B3A813;
+}
+.ColorWhite {
+    color: #FFFFFF;
 }
 .backgroundColorGold {
     background-color: #B3A813;
@@ -50,14 +60,15 @@ h1 {
 
 @media only screen and (max-width: 600px) {
     .block {
-        width:100%;
-     
-      
+        width: 100%;
     }
-    h1{
-        font-size:50px;
+
+    h1 {
+        font-size: 50px;
     }
-    
+    .visible {
+       display:none;
+    }
 }
 .mainBlock {
     background-color: #201E03;

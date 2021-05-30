@@ -1,7 +1,7 @@
 ﻿@model BlackboxFest.Models.Concert
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <!DOCTYPE html>
@@ -9,6 +9,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link href="~/css/style.css" rel="stylesheet" />
     <title>Details</title>
 </head>
 <body>
@@ -17,12 +18,12 @@
     <h4>Concert</h4>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2">
+        @*<dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Date)
-        </dt>
-        <dd class="col-sm-10">
+        </dt>*@
+        @*<dd class="col-sm-10">
             @Html.DisplayFor(model => model.Date)
-        </dd>
+        </dd>*@
 
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Stage)

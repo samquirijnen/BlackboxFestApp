@@ -16,10 +16,13 @@ namespace BlackboxFest.ViewModels
         public Concert Concert { get; set; }
         public IEnumerable<Concert> Concerts { get; set; }
         public Stage Stage { get; set; }
-        public SelectList Stages { get; set; }
+   
         public SelectList ArtistList { get; set; }
         public TimeSlot TimeSlot { get; set; }
-        public SelectList TimeSlots { get; set; }
+   
+      
+        public DateDayFestival DateDayFestival { get; set; }
+    
 
     }
 }

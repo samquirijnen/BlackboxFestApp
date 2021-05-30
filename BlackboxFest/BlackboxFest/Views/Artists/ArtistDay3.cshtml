@@ -17,15 +17,16 @@
 {
         <style>
             body {
-                background-image: url("../images/background3.png");
+                background-image: url("../images/background3.png")
             }
         </style>
     }
 </head>
 <body>
     <div class="mainBlock p-5 ">
+        <h2 class="d-flex justify-content-center ColorGold">DAY 3</h2>
         <h4 class="d-flex justify-content-center ColorGold">Preforming artists</h4>
-        @await Html.PartialAsync("_ChooseDayArtistButtonsPartial");
+        @await Html.PartialAsync("_ChooseDayArtistButtonsPartial")
         <div class="text-center">
             <form asp-controller="Artists" asp-action="Search" method="get">
                 <div class="form-actions">
@@ -42,19 +43,20 @@
 
             @foreach (var item in Model.Concerts)
             {
-                if (item.Date == DateTime.Parse("26/09/2021"))
+                if (item.DateDayFestival.Date == "26/09/2021")
                 {
+                    @if (item.Artist != null)
+                    {
+                        <div class="card bg-dark text-white ml-5 mb-5" style="width: 18rem;">
 
-                    <div class="card bg-dark text-white ml-5 mb-5" style="width: 18rem;">
+                            <a asp-action="Details" asp-route-id="@item.Artist.Id" style="text-decoration: none;"> <img class="card-img-top" src="@Html.DisplayFor(modelitem => item.Artist.ImageName)" /></a>
 
-                        <a asp-action="Details"asp-route-id="@item.Artist.Id" style="text-decoration: none;"> <img class="card-img-top" src="@Html.DisplayFor(modelitem => item.Artist.ImageName)" /></a>
+                            <div class="d-flex justify-content-around" style="background-color:black">
+                                <h4 class="card-title ColorGold">@Html.DisplayFor(modelitem => item.Artist.Name)</h4>
+                            </div>
 
-                        <div class="d-flex justify-content-around" style="background-color:black">
-                            <h4 class="card-title ColorGold">@Html.DisplayFor(modelitem => item.Artist.Name)</h4>
                         </div>
-
-                    </div>
-
+                    }
                 }
 
             }

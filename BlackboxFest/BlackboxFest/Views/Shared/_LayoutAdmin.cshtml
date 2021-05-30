@@ -4,27 +4,41 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - BlackboxFest</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />https://localhost:44339/Artists#ArtistSubmenu
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/AdminPagina.css" />
+    <link href="~/css/style.css" rel="stylesheet" />
+
 </head>
 <body>
-    <div class="row">
-        <div class="col-4">
-            @await Html.PartialAsync("_SidebarPartial");
-        </div>
-        <div class="container col-9">
-            <main role="main" class="pb-3">
-                @RenderBody(); 
 
-            </main>
+   
+    <nav class="fixed-top" style=" background-color: #026873">
+        <div class="toggle-wrap " onclick="toggleMenu(this)">
+            <span class="toggle-bar"></span>
         </div>
+
+    </nav>
+    <div class="row ">
+    <div class="col-4">
+        @await Html.PartialAsync("_SidebarPartial")
     </div>
+
+    <div class="container col-9 mt-5">
+        <main role="main" class="pb-3">
+            @RenderBody()
+
+        </main>
+    </div>
+</div>
+
+
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/custom.js" asp-append-version="true"></script>
+    <script src="~/js/scripts.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
