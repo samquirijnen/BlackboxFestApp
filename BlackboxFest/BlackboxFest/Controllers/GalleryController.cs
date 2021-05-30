@@ -76,8 +76,6 @@ namespace BlackboxFest.Controllers
             {
                 //Save image to wwwroot/image
 
-
-
                 string wwwrootPath = _hostEnvironment.WebRootPath;
                 string FileName = Path.GetFileNameWithoutExtension(viewModel.Gallery.ImageFile.FileName);
                 string extension = Path.GetExtension(viewModel.Gallery.ImageFile.FileName);

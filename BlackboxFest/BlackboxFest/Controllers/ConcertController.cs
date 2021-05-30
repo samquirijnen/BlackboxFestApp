@@ -29,8 +29,7 @@ namespace BlackboxFest.Controllers
         // GET: Concert
         public async Task<IActionResult> Index()
         {
-            //  ConcertViewModel viewModel = new ConcertViewModel();
-            //viewModel.Concerts = await _uow.ConcertRepository.GetAll().Include(c => c.Artist).Include(c => c.Stage).ToListAsync();
+           
             await  TimeTable("24/09/2021");
             return View();
         }
@@ -52,19 +51,9 @@ namespace BlackboxFest.Controllers
                 }
               
             }
-          
-           
 
                 viewModel.ArtistList = new SelectList(_uow.ArtistRepository.GetAll(), "Id", "Name");
 
-       
-
-
-
-
-            viewModel.Stages = new SelectList(_uow.StageRepository.GetAll(), "Id", "Name");
-            viewModel.TimeSlots = new SelectList(_uow.TimeSlotRepository.GetAll(), "Id", "Hour");
-            viewModel.DateDayFestivals = new SelectList(_uow.DateDayFestivalRepository.GetAll(), "Id", "Date");
 
             return View(viewModel);
         }
@@ -130,67 +119,7 @@ namespace BlackboxFest.Controllers
             return View(concert);
         }
 
-        // GET: Concert/Create
-        public IActionResult Create()
-        {
-            ConcertViewModel viewModel = new ConcertViewModel();
-            viewModel.ArtistList = new SelectList(_uow.ArtistRepository.GetAll(), "Id", "Name");
-            viewModel.Stages = new SelectList(_uow.StageRepository.GetAll(), "Id", "Name");
-            viewModel.TimeSlots = new SelectList(_uow.TimeSlotRepository.GetAll(), "Id", "Hour");
-            viewModel.DateDayFestivals = new SelectList(_uow.DateDayFestivalRepository.GetAll(), "Id", "Date");
-            return View(viewModel);
-        }
-
-        // POST: Concert/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(ConcertViewModel viewModel)
-        {
-            if (ModelState.IsValid)
-            {
-                viewModel.Concerts = await _uow.ConcertRepository.GetAll().Include(c => c.Artist).Include(c => c.Stage).Include(t => t.TimeSlot).Include(d=>d.DateDayFestival).ToListAsync();
-            //    viewModel.Artist = await _uow.ArtistRepository.GetAll().SingleOrDefaultAsync();
-              //  viewModel.Concert = await _uow.ConcertRepository.GetAll().SingleOrDefaultAsync();
-
-             
-
-                    viewModel.Artists = await _uow.ArtistRepository.GetAll().ToListAsync();
-                   
-
-
-                        _uow.ConcertRepository.Create(viewModel.Concert);
-
-
-                        await _uow.Save();
-                if (viewModel.Concert.DateDayFestival.Date == "24/09/2021")
-                {
-                    // _notyf.Custom($"The Artist succesfull add to the timetable", 6, "white");
-                    return RedirectToAction(nameof(Day1TimeTableAdmin));
-                }
-                if (viewModel.Concert.DateDayFestival.Date == "25/09/2021")
-                {
-                    //  _notyf.Custom($"The Artist succesfull add to the timetable", 6, "white");
-                    return RedirectToAction(nameof(Day2TimeTableAdmin));
-                }
-                if (viewModel.Concert.DateDayFestival.Date == "26/09/2021")
-                {
-                    //   _notyf.Custom($"The Artist succesfull add to the timetable", 6, "white");
-                    return RedirectToAction(nameof(Day3TimeTableAdmin));
-                }
-
-
-
-            }
-            ViewData["DateID"] = new SelectList(_uow.DateDayFestivalRepository.GetAll(), "Id", "Date", viewModel.Concert.DateID);
-            ViewData["ArtistID"] = new SelectList(_uow.ArtistRepository.GetAll(), "Id", "Name", viewModel.Concert.ArtistID);
-            ViewData["StageID"] = new SelectList(_uow.StageRepository.GetAll(), "Id", "Name", viewModel.Concert.StageID);
-            ViewData["TimeSlotID"] = new SelectList(_uow.TimeSlotRepository.GetAll(), "Id", "Hour", viewModel.Concert.TimeSlotID);
-            return RedirectToAction(nameof(Day1TimeTableAdmin));
-        }
-
-        // GET: Concert/Edit/5
+        
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -203,10 +132,9 @@ namespace BlackboxFest.Controllers
             {
                 return NotFound();
             }
-            ViewData["DateID"] = new SelectList(_uow.DateDayFestivalRepository.GetAll(), "Id", "Date", concert.DateID);
+          
             ViewData["ArtistID"] = new SelectList(_uow.ArtistRepository.GetAll(), "Id", "Name", concert.ArtistID);
-            ViewData["StageID"] = new SelectList(_uow.StageRepository.GetAll(), "Id", "Name", concert.StageID);
-            ViewData["TimeSlotID"] = new SelectList(_uow.TimeSlotRepository.GetAll(), "Id", "Hour", concert.TimeSlotID);
+    
             return View(concert);
         }
 
@@ -236,19 +164,19 @@ namespace BlackboxFest.Controllers
                        
                     if (concert.DateID == 1)
                     {
-                        // _notyf.Custom($"The Artist succesfull add to the timetable", 6, "white");
+                       
                         return RedirectToAction(nameof(Day1TimeTableAdmin));
                     }
                    
                     if (concert.DateID ==2)
                     {
-                        //  _notyf.Custom($"The Artist succesfull add to the timetable", 6, "white");
+                       
                         return RedirectToAction(nameof(Day2TimeTableAdmin));
                     }
                   
                     if (concert.DateID==3)
                     {
-                        //   _notyf.Custom($"The Artist succesfull add to the timetable", 6, "white");
+                      
                         return RedirectToAction(nameof(Day3TimeTableAdmin));
                     }
                 }
@@ -265,10 +193,9 @@ namespace BlackboxFest.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DateID"] = new SelectList(_uow.DateDayFestivalRepository.GetAll(), "Id", "Date", concert.DateID);
+          
             ViewData["ArtistID"] = new SelectList(_uow.ArtistRepository.GetAll(), "Id", "Name", concert.ArtistID);
-            ViewData["StageID"] = new SelectList(_uow.StageRepository.GetAll(), "Id", "Name", concert.StageID);
-            ViewData["TimeSlotID"] = new SelectList(_uow.TimeSlotRepository.GetAll(), "Id", "Hour", concert.TimeSlotID);
+          
             return View(concert);
         }
 
@@ -310,10 +237,6 @@ namespace BlackboxFest.Controllers
         {
             return _uow.ConcertRepository.GetAll().Any(e => e.Id == id);
         }
-
-
-       
-
 
     }
 }

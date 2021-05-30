@@ -13,13 +13,13 @@ namespace BlackboxFest.Data
             : base(options)
         {
         }
-        public DbSet<Adress> Adresses { get; set; }
+      
         public DbSet<Artist> Artists { get; set; }
       
 
-        public DbSet<City> Cities { get; set; }
+      
         public DbSet<Concert> Concerts { get; set; }
-        public DbSet<Country> Countries { get; set; }
+      
         public DbSet<News> News { get; set; }
         
         public DbSet<Stage> Stages { get; set; }

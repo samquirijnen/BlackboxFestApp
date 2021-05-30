@@ -121,8 +121,10 @@ namespace BlackboxFest.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ShortDescription,LongDescription,ImageUrl,Date,ImageName")] News news)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ShortDescription,LongDescription,Date,ImageName,NewImageName,ImageFile")] News news)
         {
+            
+            news.NewImageName = news.ImageName;
             if (id != news.Id)
             {
                 return NotFound();
@@ -130,12 +132,37 @@ namespace BlackboxFest.Controllers
 
             if (ModelState.IsValid)
             {
+                if (news.ImageName != null)
+                {
+                    var imagepath = Path.Combine(_hostEnvironment.WebRootPath, "image", news.ImageName);
+                    if (System.IO.File.Exists(imagepath))
+                    {
+                        System.IO.File.Delete(imagepath);
+                    }
+                }
+                if (news.ImageFile != null)
+                {
+
+                    string wwwrootPath = _hostEnvironment.WebRootPath;
+                    string FileName = Path.GetFileNameWithoutExtension(news.ImageFile.FileName);
+                    string extension = Path.GetExtension(news.ImageFile.FileName);
+                    news.NewImageName = FileName = FileName + extension;
+                    string path = Path.Combine(wwwrootPath + "/images/", FileName);
+                    string NewImageName = "/images/" + news.NewImageName;
+                    news.NewImageName = NewImageName;
+                    using (var fileStream = new FileStream(path, FileMode.Create))
+
+                    {
+                        await news.ImageFile.CopyToAsync(fileStream);
+                    }
+
+                }
+                news.ImageName = news.NewImageName;
                 try
                 {
-                 
+
                     _uow.NewsRepository.Update(news);
                     await _uow.Save();
-                  
                 }
                 catch (DbUpdateConcurrencyException)
                 {

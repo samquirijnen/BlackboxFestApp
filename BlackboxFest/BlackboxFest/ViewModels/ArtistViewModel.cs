@@ -13,5 +13,6 @@ namespace BlackboxFest.ViewModels
         public Artist Artist { get; set; }
         public IEnumerable<Artist> Artists { get; set; }
         public List<Concert>Concerts { get; set; }
+      
     }
 }

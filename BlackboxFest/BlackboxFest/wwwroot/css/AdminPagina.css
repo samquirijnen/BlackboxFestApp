@@ -1,13 +1,16 @@
 ﻿body {
     background-color: #47515A;
-   
- 
+    font-family:Verdana;
     color: white;
 }
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-
-
+.ColorWhite {
+    color: #FFFFFF;
+}
+.bottom-buffer {
+    margin-bottom: 2.2rem;
+}
 .kleurTekst{
     color:aqua;
 }
@@ -35,4 +38,16 @@ a, a:hover, a:focus {
     outline: none !important;
     border: none;
 }
+@media only screen and (max-width: 600px) {
+    .block {
+        width: 100%;
+    }
 
+    h1 {
+        font-size: 50px;
+    }
+
+    .visible {
+        display: none;
+    }
+}

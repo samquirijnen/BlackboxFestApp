@@ -64,7 +64,7 @@ namespace BlackboxFest.Data.Repositories
         }
         public TEntity GetByIdWithoutAsync(int? id)
         {
-            return  _context.Set<TEntity>().Find(id);
+            return _context.Set<TEntity>().Find(id);
         }
 
         public void Update(TEntity entity)
@@ -111,5 +111,6 @@ namespace BlackboxFest.Data.Repositories
 
             return query.SingleOrDefault();
         }
+
     }
 }

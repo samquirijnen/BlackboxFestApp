@@ -13,7 +13,7 @@ namespace BlackboxFest.Models
         public string LastName { get; set; }
       
         
-       // public DateTime DateOfBirth { get; set; }
+      
       
 
     }
