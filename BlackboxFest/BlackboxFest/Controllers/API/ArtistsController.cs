@@ -88,60 +88,7 @@ namespace BlackboxFest.Controllers.API
             }
 
             return NoContent();
-            //artist.NewImageName = artist.ImageName;
-            //if (id != artist.Id)
-            //{
-            //    return NotFound();
-            //}
-
-            //if (ModelState.IsValid)
-            //{
-            //    if (artist.ImageName != null)
-            //    {
-            //        var imagepath = Path.Combine(_hostEnvironment.WebRootPath, "image", artist.ImageName);
-            //        if (System.IO.File.Exists(imagepath))
-            //        {
-            //            System.IO.File.Delete(imagepath);
-            //        }
-            //    }
-            //if (artist.ImageFile != null)
-            //{
-
-            //    string wwwrootPath = _hostEnvironment.WebRootPath;
-            //    string FileName = Path.GetFileNameWithoutExtension(artist.ImageFile.FileName);
-            //    string extension = Path.GetExtension(artist.ImageFile.FileName);
-            //    artist.NewImageName = FileName = FileName + extension;
-            //    string path = Path.Combine(wwwrootPath + "/images/", FileName);
-            //    string NewImageName = "/images/" + artist.NewImageName;
-            //    artist.NewImageName = NewImageName;
-            //    using (var fileStream = new FileStream(path, FileMode.Create))
-
-            //    {
-            //        await artist.ImageFile.CopyToAsync(fileStream);
-            //    }
-
-            //}
-            //    artist.ImageName = artist.NewImageName;
-            //    try
-            //    {
-
-            //        _uow.ArtistRepository.Update(artist);
-            //        await _uow.Save();
-            //    }
-            //    catch (DbUpdateConcurrencyException)
-            //    {
-            //        if (!ArtistExists(artist.Id))
-            //        {
-            //            return NotFound();
-            //        }
-            //        else
-            //        {
-            //            throw;
-            //        }
-            //    }
-            //    return NoContent();
-            //}
-            //return NoContent();
+  
         }
 
         // POST: api/Artists
@@ -161,21 +108,7 @@ namespace BlackboxFest.Controllers.API
         [HttpDelete("{id}")]
         public async Task<ActionResult<Artist>> DeleteArtist(int id, ArtistViewModel viewModel)
         {
-            //var artist = await _uow.ArtistRepository.GetById(id);
-
-            //if (artist == null)
-            //{
-               
-            //        return NotFound();
-              
-               
-            //}
-            //_uow.ArtistRepository.Delete(artist);
-
-            //await _uow.Save();
-
-            ////  return artist;
-            //return NoContent();
+        
             viewModel.Artist = await _uow.ArtistRepository.GetById(id);
             viewModel.Concerts = await _uow.ConcertRepository.GetAll().Where(x => x.ArtistID == id).ToListAsync();
 

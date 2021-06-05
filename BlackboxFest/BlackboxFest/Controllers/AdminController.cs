@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace BlackboxFest.Controllers
 {
-    [Authorize(Roles ="Admin")]
-    public class AdminController : Controller
-    {
-        public IActionResult Index()
-        {
-           // return View();
-            return LocalRedirect("~/Artists/");
-        }
-    }
+    //[Authorize(Roles ="Admin")]
+    //public class AdminController : Controller
+    //{
+    //    public IActionResult Index()
+    //    {
+    //      //  return View();
+    //        //  return LocalRedirect("~/Artists/");
+    //        return RedirectToAction("~/Artists/Index/");
+    //    }
+    //}
 }

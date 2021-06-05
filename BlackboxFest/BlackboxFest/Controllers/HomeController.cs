@@ -22,7 +22,8 @@ namespace BlackboxFest.Controllers
         {
             if (User.IsInRole("Admin"))
             {
-                return View();
+               
+                return LocalRedirect("~/Artists/Index/");
             }
           
             return View("IndexUser");

@@ -22,16 +22,12 @@
             <h3>MAINSTAGE</h3>
             @foreach (var item in Model.Concerts)
             {
-                //if (item.Date == DateTime.Parse("24/09/2021"))
-                //{
+               
 
                     @if (item.StageID == 1)
                     {
                         @await Html.PartialAsync("_TimeTableSlotPartial", item)
                     }
-
-
-             //   }
 
             }
         </div>
@@ -39,25 +35,19 @@
             <h3>THE CRAVE</h3>
             @foreach (var item in Model.Concerts)
             {
-                //if (item.Date == DateTime.Parse("24/09/2021"))
-                //{
 
                     @if (item.StageID == 2)
                     {
                         @await Html.PartialAsync("_TimeTableSlotPartial", item)
+
+                        }
                     }
-
-
-             //   }
-
-            }
         </div>
         <div class="row d-flex justify-content-center">
             <h3>TECHNOVILLE</h3>
             @foreach (var item in Model.Concerts)
             {
-                //if (item.Date == DateTime.Parse("24/09/2021"))
-                //{
+         
 
                     @if (item.StageID == 3)
                     {
@@ -65,7 +55,7 @@
                     }
 
 
-             //   }
+          
 
             }
         </div>
@@ -74,8 +64,7 @@
             <h3>THE DOME</h3>
             @foreach (var item in Model.Concerts)
             {
-                //if (item.Date == DateTime.Parse("24/09/2021"))
-                //{
+            
 
                     @if (item.StageID == 4)
                     {
@@ -83,7 +72,7 @@
                     }
 
 
-           //     }
+          
 
             }
         </div>
@@ -96,9 +85,7 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Concert.Artist)
                     </th>
-                    @*<th>
-                        @Html.DisplayNameFor(model => model.Concert.Date)
-                    </th>*@
+                 
 
                     <th>
                         @Html.DisplayNameFor(model => model.Concert.Stage)
@@ -117,10 +104,7 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Artist.Name)
                     </td>
-                    @*<td>
-                        @Html.DisplayFor(modelItem => item.Date)
-                    </td>*@
-
+                  
                     <td>
                         @Html.DisplayFor(modelItem => item.Stage.Name)
                     </td>

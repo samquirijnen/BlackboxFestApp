@@ -53,7 +53,7 @@ namespace BlackboxFest.Areas.Identity.Pages.Account
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
         public string PersonId { get; private set; }
-     //   public Adress Adress { get; set; }
+     
 
         public class InputModel
         {
@@ -85,12 +85,6 @@ namespace BlackboxFest.Areas.Identity.Pages.Account
             [Required(ErrorMessage = "Add a lastname")]
             public string LastName { get; set; }
 
-            //[Required(ErrorMessage = "Add a Country")]
-            //public Country Country { get; set; }
-
-            //[Required(ErrorMessage = "Add a Adress")]
-            //public Adress Adress { get; set; }
-           
 
         }
 
@@ -111,7 +105,7 @@ namespace BlackboxFest.Areas.Identity.Pages.Account
                 var user = new CustomUser { UserName = Input.UserName, Email = Input.Email ,FirstName = Input.FirstName, LastName= Input.LastName };
              //   var adress = new Adress { StreetName = Input.Adress.StreetName };
                 var result = await _userManager.CreateAsync(user, Input.Password);
-              
+                if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
 
