@@ -17,22 +17,26 @@
 </head>
 <body class="backgroundArtist">
     <h2 class=" d-flex justify-content-center">ARTISTS</h2>
-    <div class="row mt-5 ">
-        <div class="text-center ml-5">
-            <form asp-controller="Artists" asp-action="SearchAdmin" method="get">
-                <div class="form-actions ">
-                    <p>
+    <div class="row mt-5 " >
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="text-center ml-5 pt-5 col-md-10">
+                <form asp-controller="Artists" asp-action="SearchAdmin" method="get">
+                    <div class="form-actions d-flex justify-content-center ">
+                        <p>
 
-                        <input asp-for="EventSearch" placeholder="Search Artist" />
-                        <input type="submit" value="Search" class="   btn kleurblauwGroen" />
-                        <a class="ColorGold" asp-controller="Artists" asp-action="Index">Back to list</a>
-                    </p>
-                </div>
-            </form>
+                            <input asp-for="EventSearch" placeholder="Search Artist" />
+                            <input type="submit" value="Search" class="   btn kleurblauwGroen" />
+                            <a class="ColorGold" asp-controller="Artists" asp-action="Index">Back to list</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-1"></div>
         </div>
-        <div class="col-2"></div>
+      
 
-        <div class="table col-10 d-flex justify-content-center">
+        <div class="table col-10 d-flex justify-content-center ml-5">
 
             <table class="table table-dark ">
                 <thead>

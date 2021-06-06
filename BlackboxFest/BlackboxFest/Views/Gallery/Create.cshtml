@@ -15,11 +15,11 @@
 
 <h4  class="d-flex justify-content-center ColorHeader m-5">Add photo's to Gallery</h4>
 
-<div class="row d-flex justify-content-center ">
+<div class="row d-flex justify-content-center AchtergrondBlock ">
     <div class="col-md-4 m-5">
-        <form asp-action="Create"  enctype="multipart/form-data">
+        <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-          
+
 
             <div class="form-group">
                 <label asp-for="Gallery.ImageFile" class="control-label"></label>
@@ -28,17 +28,18 @@
                 <input type="hidden" asp-for="Gallery.ImageName" />
 
                 <span asp-validation-for="Gallery.ImageFile" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Add to Gallery" class="btn btn-primary" />
-                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add to Gallery" class="btn kleurblauwGroen" />
+            </div>
         </form>
+        <div class=" d-flex justify-content-center ">
+            <a asp-action="Index">Back to List</a>
+        </div>
     </div>
 </div>
 
-<div class=" d-flex justify-content-center ">
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
