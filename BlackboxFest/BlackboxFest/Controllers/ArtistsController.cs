@@ -34,7 +34,7 @@ namespace BlackboxFest.Controllers
         public async Task<IActionResult> Index()
         {
             ArtistViewModel viewModel = new ArtistViewModel();
-            viewModel.Artists = await _uow.ArtistRepository.GetAll().ToListAsync();
+            viewModel.Artists = await _uow.ArtistRepository.GetAll().OrderBy(x=>x.Name).ToListAsync();
             return View(viewModel);
         }
         [AllowAnonymous]

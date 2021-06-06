@@ -2,13 +2,13 @@
 
 @if (User.IsInRole("Admin"))
 {
-    <div class="row d-flex justify-content-center mb-4">
+    <div class="row d-flex justify-content-center mb-4" >
 
 
         <div>
             <form asp-controller="Concert" asp-action="Day1TimeTableAdmin" method="get">
-                <div class="form-actions">
-                    <input type="submit" value="Day1" class=" ColorGold btn  " />
+                <div class="form-actions" >
+                    <input type="submit" value="Day1" class=" ColorGold btn  " style="color:white"/>
 
                 </div>
             </form>
@@ -16,7 +16,7 @@
         <div>
             <form asp-controller="Concert" asp-action="Day2TimeTableAdmin" method="get">
                 <div class="form-actions">
-                    <input type="submit" value="Day2" class="  ColorGold btn " />
+                    <input type="submit" value="Day2" class="  ColorGold btn " style="color:white"/>
 
                 </div>
             </form>
@@ -24,7 +24,7 @@
         <div>
             <form asp-controller="Concert" asp-action="Day3TimeTableAdmin" method="get">
                 <div class="form-actions">
-                    <input type="submit" value="Day3" class="  ColorGold btn " />
+                    <input type="submit" value="Day3" class="  ColorGold btn " style="color:white"/>
 
                 </div>
             </form>

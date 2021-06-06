@@ -133,7 +133,7 @@ namespace BlackboxFest.Controllers
                 return NotFound();
             }
           
-            ViewData["ArtistID"] = new SelectList(_uow.ArtistRepository.GetAll(), "Id", "Name", concert.ArtistID);
+            ViewData["ArtistID"] = new SelectList(_uow.ArtistRepository.GetAll().OrderBy(x=>x.Name), "Id", "Name", concert.ArtistID);
     
             return View(concert);
         }

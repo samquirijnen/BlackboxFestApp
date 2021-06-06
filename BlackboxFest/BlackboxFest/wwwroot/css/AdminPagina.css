@@ -51,3 +51,7 @@ a, a:hover, a:focus {
         display: none;
     }
 }
+.AchtergrondBlock {
+    background-color: #303030;
+    border-radius:0.5rem;
+}
