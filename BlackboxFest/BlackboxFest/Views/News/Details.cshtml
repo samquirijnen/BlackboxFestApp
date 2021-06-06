@@ -18,11 +18,11 @@
 <body>
    
    
-        <div class="card mb-5  bg-dark " enctype="multipart/form-data">
+        <div class="card mb-5  bg-dark " enctype="multipart/form-data"style="opacity:0.98" >
             <img class="card-img" src="@(Model.News.ImageName)" asp-append-version="true" alt="Image Artist" style="align-content:center" />
 
-            <div class="card-body ">
-                <h2 class="d-flex justify-content-center ColorGold mb-5"> @Html.DisplayFor(model => model.News.Date)</h2>
+            <div class="card-body " >
+                <h2 class="d-flex justify-content-center ColorGold mb-5" > @Html.DisplayFor(model => model.News.Date)</h2>
                 <h4 class="d-flex justify-content-center ColorGold mb-5"> @Html.DisplayFor(model => model.News.Title)</h4>
                 <p class="col-sm-10 colorTextLongDescription  ml-5" style=" font-family:Verdana"> @Html.DisplayFor(model => model.News.LongDescription)</p>
             </div>

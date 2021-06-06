@@ -38,7 +38,7 @@ namespace BlackboxFest.Controllers
         public async Task<IActionResult> NewsViewUser()
         {
             NewsViewModel viewModel = new NewsViewModel();
-            viewModel.NewsItems = await _uow.NewsRepository.GetAll().ToListAsync();
+            viewModel.NewsItems = await _uow.NewsRepository.GetAll().OrderByDescending(x=>x.Date).ToListAsync();
             return View(viewModel);
         }
         [AllowAnonymous]

@@ -69,7 +69,7 @@ namespace BlackboxFest.Controllers.API
                 return BadRequest();
             }
             _uow.ArtistRepository.Update(artist);
-            // _uow.Entry(artist).State = EntityState.Modified;
+          
 
             try
             {
@@ -98,7 +98,7 @@ namespace BlackboxFest.Controllers.API
         public async Task<ActionResult<Artist>> PostArtist(Artist artist)
         {
             _uow.ArtistRepository.Create(artist);
-            //_context.Artists.Add(artist);
+           
             await _uow.Save();
 
             return CreatedAtAction("GetArtist", new { id = artist.Id }, artist);
